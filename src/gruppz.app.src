@@ -1,0 +1,26 @@
+{application, gruppz, [
+    {description, ""},
+    {vsn, "0.1"},
+    {modules, []},
+    {registered, [gruppz_sup]},
+    {applications, [kernel,
+                    stdlib,
+                    crypto,
+                    sasl,
+                    mnesia,
+                    tuah,
+                    cowboy,
+                    erlydtl,
+                    jsx,
+                    lager,
+                    cowlib,
+                    ranch,
+                    bson,
+                    mongodb,
+                    sync,
+                    goldrush,
+                    pbkdf2,
+                    eunit_formatters
+    ]},
+    {mod, {gruppz_app, []}}
+]}.
