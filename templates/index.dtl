@@ -31,7 +31,7 @@
 
     <div class="header">
         <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-            <a class="pure-menu-heading" href="">Gruppz</a>
+            <a class="pure-menu-heading" href="/">Gruppz</a>
 
             <ul class="pure-menu-list">
                 <li class="pure-menu-item"><a href="/" class="pure-menu-link">Home</a></li>
@@ -50,7 +50,7 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             </p>
             <p>
-                <a href="http://purecss.io" class="pure-button pure-button-primary">Get Started</a>
+                <a href="/" class="pure-button pure-button-primary">Get Started</a>
             </p>
         </div>
     </div>
