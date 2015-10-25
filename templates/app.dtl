@@ -1,204 +1,1312 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html class="no-js">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A layout example that shows off a responsive email layout.">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes">
 
-    <title>Gruppz - {{ page }}</title>
+  <title>Gruppz - Inbox</title>
 
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-  
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="css/layouts/email-old-ie.css">
-    <![endif]-->
-    <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="/static/css/layouts/email.css">
-    <!--<![endif]-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
+  <!-- favicon.ico and apple-touch-icon.png -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/static/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/static/images/favicons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/static/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/static/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/static/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/static/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/static/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/static/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/static/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/static/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/static/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/static/images/favicons/manifest.json">
+  <meta name="msapplication-TileColor" content="#2d89ef">
+  <meta name="msapplication-TileImage" content="images/favicons/mstile-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,700,600,300" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="/static/styles/bootstrap.css">
+
+  <link rel="stylesheet" href="/static/styles/dependencies.css">
+
+  <link rel="stylesheet" href="/static/styles/wrapkit.css">
+
+  <link rel="stylesheet" href="/static/styles/pages.css">
 </head>
 <body>
-<div id="layout" class="content pure-g">
-    <div id="nav" class="pure-u">
-        <a href="#" class="nav-menu-button">Menu</a>
+  <!--[if lt IE 9]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
-        <div class="nav-inner">
-            <button class="primary-button pure-button">Compose</button>
 
-            <div class="pure-menu">
-                <ul class="pure-menu-list">
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Inbox <span class="email-count">(2)</span></a></li>
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Important</a></li>
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sent</a></li>
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Drafts</a></li>
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Trash</a></li>
-                    <li class="pure-menu-item"><a href="/auth/logout" class="pure-menu-link">Logout</a></li>
-                    <li class="pure-menu-heading">Labels</li>
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link"><span class="email-label-personal"></span>Personal</a></li>
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link"><span class="email-label-work"></span>Work</a></li>
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link"><span class="email-label-travel"></span>Travel</a></li>
+    <main class="wrapkit-wrapper" id="wrapper">
+
+    <!-- ============================================
+    HEADER SECTION
+    =============================================== -->
+    <!-- navigation -->
+    <nav class="header navbar">
+      <div class="container-fluid">
+        <!-- use .pull-*, couse we need this float on any screen size -->
+        <div class="pull-left">
+          <a class="navbar-brand" href="index.html" role="logo" aria-label="Logo">
+            <img class="logo" src="/static/images/logo/brand-text-dark.png" alt="Brand">
+          </a>
+          <button data-sidebar="toggleVisible" class="btn btn-icon navbar-btn">
+            <i class="fa fa-bars"></i>
+            <i class="fa fa-caret-down"></i>
+          </button>
+        </div>
+
+        <!-- use .pull-*, couse we need this float on any screen size -->
+        <div class="pull-right" role="navigation">
+          <a aria-label="Search" id="brandSearchNav" class="btn btn-icon navbar-btn" href="#"><i class="fa fa-search"></i></a>
+
+          <div class="dropdown-ext">
+            <a aria-label="notifications" class="btn btn-icon navbar-btn dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="fa fa-inbox"></i>
+              <span class="dotted dotted-danger"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-ext dropdown-menu-right" role="menu">
+              <div class="dd-head">
+                <div class="dd-head-actions">
+                  <a href="#" class="btn btn-xs btn-default">Compose</a>
+                </div>
+                <p><a href="#">Inbox (2)</a></p>
+              </div>
+              <div class="dd-body">
+                <ul class="media-list">
+                  <li class="media unread">
+                    <a href="#">
+                      <div class="media-left">
+                        <img class="media-object img-circle" width="32" src="/static/images/dummy/unknown-profile.jpg" alt="user">
+                      </div>
+                      <div class="media-body">
+                        <p class="pull-right"><small>6m</small></p>
+                        <h4 class="media-heading body-text">Stilearning</h4>
+                        <p>Newest Themes & Templates - Et est, sed mattis, donec hac</p>
+                      </div>
+                    </a>
+                    <span class="dd-actions">
+                      <a href="#" title="mark as read" data-toggle="tooltip" data-container="body" data-placement="bottom"><i class="fa fa-circle-o"></i></a>
+                    </span>
+                  </li>
+                  <li class="media">
+                    <a href="#">
+                      <div class="media-left">
+                        <img class="media-object img-circle" width="32" src="/static/images/dummy/uifaces7.jpg" alt="user">
+                      </div>
+                      <div class="media-body">
+                        <p class="pull-right"><small>Today, 03:11am</small></p>
+                        <h4 class="media-heading body-text">Eugene Barnett</h4>
+                        <p>Service Update: added support for Angular - Sed ultricies nibh, in feugiat</p>
+                      </div>
+                    </a>
+                    <span class="dd-actions">
+                      <a href="#" title="mark as unread" data-toggle="tooltip" data-container="body" data-placement="bottom"><i class="fa fa-circle"></i></a>
+                    </span>
+                  </li>
+                  <li class="media">
+                    <a href="#">
+                      <div class="media-left">
+                        <img class="media-object img-circle" width="32" src="/static/images/dummy/uifaces4.jpg" alt="user">
+                      </div>
+                      <div class="media-body">
+                        <p class="pull-right"><small>Today, 02:47am</small></p>
+                        <h4 class="media-heading body-text">bent10@stilearning.com</h4>
+                        <p>Spread the Word & Earn! - Dapibus nec. Integer sed purus</p>
+                      </div>
+                    </a>
+                    <span class="dd-actions">
+                      <a href="#" title="mark as unread" data-toggle="tooltip" data-container="body" data-placement="bottom"><i class="fa fa-circle"></i></a>
+                    </span>
+                  </li>
+                  <li class="media unread">
+                    <a href="#">
+                      <div class="media-left">
+                        <img class="media-object img-circle" width="32" src="/static/images/dummy/uifaces3.jpg" alt="user">
+                      </div>
+                      <div class="media-body">
+                        <p class="pull-right"><small>Yesterday, 11:41pm</small></p>
+                        <h4 class="media-heading body-text">David Lloyd</h4>
+                        <p>Say thanks for your awesome works! - Viverra fermentum ac. Litora mauris elit</p>
+                      </div>
+                    </a>
+                    <span class="dd-actions">
+                      <a href="#" title="mark as read" data-toggle="tooltip" data-container="body" data-placement="bottom"><i class="fa fa-circle"></i></a>
+                    </span>
+                  </li>
+                  <li class="media">
+                    <a href="#">
+                      <div class="media-left">
+                        <img class="media-object img-circle" width="32" src="/static/images/dummy/unknown-profile.jpg" alt="user">
+                      </div>
+                      <div class="media-body">
+                        <p class="pull-right"><small>Yesterday, 10:04pm</small></p>
+                        <h4 class="media-heading body-text">Dribbble</h4>
+                        <p>Design brief from Apple - Quis in nonummy. Ut augue, proident habitant</p>
+                      </div>
+                    </a>
+                    <span class="dd-actions">
+                      <a href="#" title="mark as unread" data-toggle="tooltip" data-container="body" data-placement="bottom"><i class="fa fa-circle-o"></i></a>
+                    </span>
+                  </li>
+                  <li class="media">
+                    <a href="#">
+                      <div class="media-left">
+                        <img class="media-object img-circle" width="32" src="/static/images/dummy/uifaces16.jpg" alt="user">
+                      </div>
+                      <div class="media-body">
+                        <p class="pull-right"><small>Yesterday, 08:55pm</small></p>
+                        <h4 class="media-heading body-text">Olivia Gonzales</h4>
+                        <p>Updating some of the designs! - Commodo non ac, sem netus adipiscing</p>
+                      </div>
+                    </a>
+                    <span class="dd-actions">
+                      <a href="#" title="mark as unread" data-toggle="tooltip" data-container="body" data-placement="bottom"><i class="fa fa-circle"></i></a>
+                    </span>
+                  </li>
+                  <li class="media">
+                    <a href="#">
+                      <div class="media-left">
+                        <img class="media-object img-circle" width="32" src="/static/images/dummy/uifaces20.jpg" alt="user">
+                      </div>
+                      <div class="media-body">
+                        <p class="pull-right"><small>Yesterday, 03:57pm</small></p>
+                        <h4 class="media-heading body-text">Marco Auer</h4>
+                        <p>Request custom designs! - Adipiscing pellentesque cum, proin luctus</p>
+                      </div>
+                    </a>
+                    <span class="dd-actions">
+                      <a href="#" title="mark as unread" data-toggle="tooltip" data-container="body" data-placement="bottom"><i class="fa fa-circle"></i></a>
+                    </span>
+                  </li>
                 </ul>
-            </div>
+              </div><!-- /.dd-body -->
+            </div><!-- /.dropdown-menu -->
+          </div><!-- /.dropdown -->
+
+          <div class="dropdown">
+            <a aria-label="More" class="btn btn-icon navbar-btn dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="fa fa-ellipsis-v"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-profile.html"><span class="pull-right"><i class="fa fa-user text-muted"></i></span>Profile</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-timeline.html"><span class="pull-right"><i class="fa fa-clock-o text-muted"></i></span>Timeline</a></li>
+              <li class="divider"></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-help.html"><span class="pull-right"><i class="fa fa-question-circle text-muted"></i></span>Help</a></li>
+              <li class="divider"></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-locked.html"><span class="pull-right"><i class="fa fa-lock text-muted"></i></span>Locked</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-signin.html"><span class="pull-right"><i class="fa fa-sign-out text-muted"></i></span> Sign out</a></li>
+            </ul>
+          </div><!-- /.dropdown -->
+        </div><!-- /navigation -->
+
+        <div class="brand-search" id="brandSearchFrm">
+          <form action="#" role="search">
+            <a href="#" class="search-close">&times;</a>
+            <input class="search-field" placeholder="Search for everything you want..." tabindex="-1">
+          </form>
+        </div><!-- /.brand-search -->
+      </div><!-- /.container-fluid -->
+    </nav><!-- /navigation -->
+
+
+
+    <!-- ============================================
+    SIDEBAR SECTION
+    =============================================== -->
+    <aside class="sidebar" role="complementary">
+
+      <!-- profile -->
+      <div class="sidebar-block">
+        <div class="media">
+          <div class="media-left">
+            <a href="page-profile.html">
+              <span class="status dotted dotted-success" data-toggle="tooltip" data-container="body" title="available"></span>
+              <img class="media-object img-circle" src="/static/images/dummy/uifaces14.jpg" alt="photo profile">
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">Emma Greene&nbsp;&nbsp;&nbsp;<a href="#"><span class="text-muted fa fa-angle-down"></span></a></h4>
+            <p class="text-muted">
+              <small>Graphic Designer</small>
+            </p>
+          </div>
         </div>
-    </div>
+      </div><!-- /.sidebar-block -->
+      <!-- /profile -->
 
-    <div id="list" class="pure-u-1">
-        <div class="email-item email-item-selected pure-g">
-            <div class="pure-u">
-                <img class="email-avatar" alt="Tilo Mitra&#x27;s avatar" height="64" width="64" src="/static/img/common/tilo-avatar.png">
-            </div>
+      <!-- /navigation -->
+      <div class="nav-wrapper">
+        <ul class="nav nav-stacked" role="navigation">
+          <li class="nav-item" role="presentation">
+            <a href="#" data-toggle="nav-child">
+              <span class="nav-icon"><i class="fa fa-dashcube"></i></span>
+              <span class="nav-text">Dashboard</span>
+            </a>
+            <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="index.html"><span class="nav-text">Dashboard 1</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="index-2.html"><span class="nav-text">Dashboard 2</span></a></li>
+            </ul>
+          </li>
 
-            <div class="pure-u-3-4">
-                <h5 class="email-name">Tilo Mitra</h5>
-                <h4 class="email-subject">Hello from Toronto</h4>
-                <p class="email-desc">
-                    Hey, I just wanted to check in with you from Toronto. I got here earlier today.
-                </p>
-            </div>
-        </div>
+          <li class="divider"></li>
+          <li class="nav-header" role="presentation">GET STARTED</li>
+          <li class="nav-item" role="presentation">
+            <a href="layout.html">
+              <span class="nav-icon"><i class="fa fa-object-group"></i></span>
+              <span class="nav-text">Layout</span>
+            </a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a href="ecosystem.html">
+              <span class="nav-icon"><i class="fa fa-cubes"></i></span>
+              <span class="nav-text">Ecosystem</span>
+            </a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a href="panels.html">
+              <span class="nav-icon"><i class="fa fa-puzzle-piece"></i></span>
+              <span class="nav-text">Panels</span>
+            </a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a href="#" data-toggle="nav-child">
+              <span class="nav-icon"><i class="fa fa-align-left"></i></span>
+              <span class="nav-text">Level Menu</span>
+            </a>
+            <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="nav-text">Lorem ipsum</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="nav-text">Dolor sit</span></a></li>
+              <li role="presentation">
+                <a role="menuitem" tabindex="-1" data-toggle="nav-child" href="#"><span class="nav-text">Node</span></a>
+                <ul class="nav nav-child level-2 nav-stacked nav-pills" role="menu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="nav-text">Consectetur</span></a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="nav-text">Assumenda</span></a></li>
+                </ul>
+              </li> <!-- /node -->
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="nav-text">Amet</span></a></li>
+            </ul>
+          </li>
 
-        <div class="email-item email-item-unread pure-g">
-            <div class="pure-u">
-                <img class="email-avatar" alt="Eric Ferraiuolo&#x27;s avatar" height="64" width="64" src="/static/img/common/ericf-avatar.png">
-            </div>
+          <li class="divider"></li>
+          <li class="nav-header" role="presentation">USER INTERFACES</li>
+          <li class="nav-item" role="presentation">
+            <a href="#" data-toggle="nav-child">
+              <span class="nav-icon"><i class="fa fa-briefcase"></i></span>
+              <span class="nav-text">Components</span>
+            </a>
+            <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-grid.html"><span class="nav-text">Grids</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-type.html"><span class="nav-text">Type</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-button.html"><span class="nav-text">Buttons</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-icons.html"><span class="nav-text">Icons</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-modal.html"><span class="nav-text">Modal</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-tooltip-popover.html"><span class="nav-text">Tooltips & Popovers</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-alert-callout.html"><span class="nav-text">Alerts & Callout</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-progressbar.html"><span class="nav-text">Progress bar</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-label-badge.html"><span class="nav-text">Label & Badge</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-navbar.html"><span class="nav-text">Navbar</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-nav.html"><span class="nav-text">Nav</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-tabs-collapse.html"><span class="nav-text">Tabs & Collapse</span></a></li>
+            </ul>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a href="#" data-toggle="nav-child">
+              <span class="nav-icon"><i class="fa fa-check-square"></i></span>
+              <span class="nav-text">Forms</span>
+            </a>
+            <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="frm-basic.html"><span class="nav-text">Basic Elements</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="frm-advance.html"><span class="nav-text">Advance Elements</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="frm-uploader.html"><span class="nav-text">Uploader</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="frm-xeditable.html"><span class="nav-text">x-Editable</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="frm-wizard.html"><span class="nav-text">Wizard</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="frm-editor.html"><span class="nav-text">Editor</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="frm-imagecropping.html"><span class="nav-text">Image Cropping</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="frm-validator.html"><span class="nav-text">Validator</span></a></li>
+            </ul>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a href="#" data-toggle="nav-child">
+              <span class="nav-icon"><i class="fa fa-line-chart"></i></span>
+              <span class="nav-text">Charts</span>
+            </a>
+            <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="chart-js.html"><span class="nav-text">ChartJs</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="chart-morris.html"><span class="nav-text">Morris</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="chart-inline.html"><span class="nav-text">Inline Charts</span></a></li>
+            </ul>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a href="#" data-toggle="nav-child">
+              <span class="nav-icon"><i class="fa fa-database"></i></span>
+              <span class="nav-text">Tables</span>
+            </a>
+            <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="table-basic.html"><span class="nav-text">Basic Table</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="table-datatables.html"><span class="nav-text">DataTables</span></a></li>
+            </ul>
+          </li>
 
-            <div class="pure-u-3-4">
-                <h5 class="email-name">Eric Ferraiuolo</h5>
-                <h4 class="email-subject">Re: Pull Requests</h4>
-                <p class="email-desc">
-                    Hey, I had some feedback for pull request #51. We should center the menu so it looks better on mobile.
-                </p>
-            </div>
-        </div>
+          <li class="divider"></li>
+          <li class="nav-header" role="presentation">DEVELOPMENT</li>
+          <li class="nav-item" role="presentation">
+            <a href="ui-kits.html">
+              <span class="nav-icon"><i class="fa fa-cube"></i></span>
+              <span class="nav-text">Widgets</span>
+            </a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a href="#" data-toggle="nav-child">
+              <span class="nav-icon"><i class="fa fa-plug"></i></span>
+              <span class="nav-text">Plugins</span>
+            </a>
+            <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="plugin-animate.html"><span class="nav-text">Animated</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="plugin-bootbox.html"><span class="nav-text">Bootbox</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="plugin-calendar.html"><span class="nav-text">Calendar</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="plugin-maps.html"><span class="nav-text">Maps</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="plugin-nestable.html"><span class="nav-text">Nestable List</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="plugin-session-timeout.html"><span class="nav-text">Session Timeout</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="plugin-toastr.html"><span class="nav-text">Toastr</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="plugin-treeview.html"><span class="nav-text">Tree View</span></a></li>
+            </ul>
+          </li>
+          <li class="nav-item open active" role="presentation">
+            <a href="#" data-toggle="nav-child">
+              <span class="nav-icon"><i class="fa fa-file-text-o"></i></span>
+              <span class="nav-text">Pages</span>
+            </a>
+            <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-signin.html"><span class="nav-text">Signin</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-locked.html"><span class="nav-text">Lock Screen</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-error.html"><span class="nav-text">Error Page</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-profile.html"><span class="nav-text">Profile</span></a></li>
+              <li role="presentation" class="active"><a role="menuitem" tabindex="-1" href="page-inbox.html"><span class="nav-text">Inbox</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-timeline.html"><span class="nav-text">Timeline</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-gallery.html"><span class="nav-text">Gallery</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-pricing.html"><span class="nav-text">Pricing</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-invoice.html"><span class="nav-text">Invoice</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-search.html"><span class="nav-text">Search Result</span></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-help.html"><span class="nav-text">Help</span></a></li>
+            </ul>
+          </li>
+          <li class="collapse-item" role="presentation">
+            <a href="#" data-sidebar="toggleCollapse">
+              <i class="fa fa-angle-double-left"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside><!-- /.SIDEBAR -->
 
-        <div class="email-item email-item-unread pure-g">
-            <div class="pure-u">
-                <img class="email-avatar" alt="YUI&#x27;s avatar" height="64" width="64" src="/static/img/common/yui-avatar.png">
-            </div>
 
-            <div class="pure-u-3-4">
-                <h5 class="email-name">YUI Library</h5>
-                <h4 class="email-subject">You have 5 bugs assigned to you</h4>
-                <p class="email-desc">
-                    Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla.
-                </p>
-            </div>
-        </div>
 
-        <div class="email-item pure-g">
-            <div class="pure-u">
-                <img class="email-avatar" alt="Reid Burke&#x27;s avatar" height="64" width="64" src="/static/img/common/reid-avatar.png">
-            </div>
+    <!-- ============================================
+    MAIN CONTENT SECTION
+    =============================================== -->
+    <section class="content-wrapper" role="main">
+      <div class="content">
+        <div class="content-hero">
+          <img class="content-hero-embed" src="/static/images/dummy/people2.jpg" alt="cover">
+          <div class="content-hero-overlay bg-grd-teal"></div>
+          <div class="content-hero-body">
+            <div class="content-bar">
+              <a data-toggle="modal" href="#" data-scripts="/static/include/setup.js" data-target="#templateSetup" title="Template Setups" aria-label="template setups" class="btn btn-icon btn-sm btn-default pull-right"><span class="icon-settings fa-lg text-muted"></span></a>
+              <button id="toggle-inbox-nav" type="button" aria-label="toggle inbox nav" class="btn btn-icon btn-sm btn-default hidden-md hidden-lg"><span class="icon-note fa-lg text-light"></span></button>
+            </div><!-- /.content-bar -->
+          </div><!-- /.content-hero-body -->
+        </div><!-- /.content-hero -->
 
-            <div class="pure-u-3-4">
-                <h5 class="email-name">Reid Burke</h5>
-                <h4 class="email-subject">Re: Design Language</h4>
-                <p class="email-desc">
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa.
-                </p>
-            </div>
-        </div>
 
-        <div class="email-item pure-g">
-            <div class="pure-u">
-                <img class="email-avatar" alt="Andrew Wooldridge&#x27;s avatar" height="64" width="64" src="/static/img/common/andrew-avatar.png">
-            </div>
+        <div class="content-body">
 
-            <div class="pure-u-3-4">
-                <h5 class="email-name">Andrew Wooldridge</h5>
-                <h4 class="email-subject">YUI Blog Updates?</h4>
-                <p class="email-desc">
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
-                </p>
-            </div>
-        </div>
+          <div class="inbox-wrapper">
+            <div class="inbox-control">
+              <div class="p-2x"><a href="#" class="btn btn-block btn-danger">Compose</a></div>
+              <ul class="nav nav-tabs nav-stacked nav-contrast-red" role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#inbox" aria-controls="inbox" role="tab" data-toggle="tab">
+                    <span class="pull-right label label-default">3</span>
+                    <i class="icon-drawar mr-2x"></i> Inbox
+                  </a>
+                </li>
+                <li role="presentation">
+                  <a href="#important" aria-controls="important" role="tab" data-toggle="tab">
+                    <i class="icon-pin mr-2x"></i> Important
+                  </a>
+                </li>
+                <li role="presentation">
+                  <a href="#sent" aria-controls="sent" role="tab" data-toggle="tab">
+                    <i class="icon-paper-plane mr-2x"></i> Sent
+                  </a>
+                </li>
+                <li role="presentation">
+                  <a href="#draft" aria-controls="draft" role="tab" data-toggle="tab">
+                    <span class="pull-right label label-default">2</span>
+                    <i class="icon-envelope-open mr-2x"></i> Draft
+                  </a>
+                </li>
+                <li role="presentation">
+                  <a href="#trash" aria-controls="trash" role="tab" data-toggle="tab">
+                    <i class="icon-trash mr-2x"></i> Trash
+                  </a>
+                </li>
+              </ul><!-- /nav-inbox -->
 
-        <div class="email-item pure-g">
-            <div class="pure-u">
-                <img class="email-avatar" alt="Yahoo! Finance&#x27;s Avatar" height="64" width="64" src="/static/img/common/yfinance-avatar.png">
-            </div>
+              <ul class="nav nav-pills nav-stacked nav-dark" role="tablist">
+                <li class="nav-header">LABELS</li>
+                <li role="presentation">
+                  <a href="#label1">
+                    <i class="fa fa-circle-o text-blue mr-2x"></i> Label 1
+                  </a>
+                </li>
+                <li role="presentation">
+                  <a href="#label2">
+                    <i class="fa fa-circle-o text-teal mr-2x"></i> Label 2
+                  </a>
+                </li>
+                <li role="presentation">
+                  <a href="#label3">
+                    <i class="fa fa-circle-o text-orange mr-2x"></i> Label 3
+                  </a>
+                </li>
+                <li role="presentation">
+                  <a href="#label4">
+                    <i class="fa fa-circle-o text-red mr-2x"></i> Label 4
+                  </a>
+                </li>
+              </ul><!-- /nav-label -->
+            </div><!-- /.inbox-control -->
 
-            <div class="pure-u-3-4">
-                <h5 class="email-name">Yahoo! Finance</h5>
-                <h4 class="email-subject">How to protect your finances from winter storms</h4>
-                <p class="email-desc">
-                    Mauris tempor mi vitae sem aliquet pharetra. Fusce in dui purus, nec malesuada mauris.
-                </p>
-            </div>
-        </div>
+            <div class="inbox-paper">
+              <div class="inbox-paper-heading">
+                <div class="btn-toolbar">
+                  <div class="dropdown pull-right">
+                    <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" rel="tooltip" title="More" data-container="body"><i class="icon-options"></i></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li><a href="#">Add Label</a></li>
+                      <li><a href="#">Add Contact</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Appearances</a></li>
+                      <li><a href="#">Setups</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Help</a></li>
+                    </ul>
+                  </div><!-- /.dropdown -->
+                  <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-default btn-icon" data-toggle="tooltip" title="Previous" data-container="body"><i class="icon-arrow-left"></i></button>
+                    <div class="btn btn-default btn-icon" data-toggle="tooltip" title="Page 1 of 26" data-container="body">1 / 26</div>
+                    <button type="button" class="btn btn-default btn-icon" data-toggle="tooltip" title="Next" data-container="body"><i class="icon-arrow-right"></i></button>
+                  </div><!-- /.btn-group -->
 
-        <div class="email-item pure-g">
-            <div class="pure-u">
-                <img class="email-avatar" alt="Yahoo! News&#x27; avatar" height="64" width="64" src="/static/img/common/ynews-avatar.png">
-            </div>
+                  <div class="btn-group">
+                    <div class="nice-checkbox no-margin mt-1x help-inline" data-toggle="tooltip" title="Select" data-container="body">
+                      <input type="checkbox" id="select-all">
+                      <label for="select-all">&nbsp;</label>
+                    </div>
+                  </div><!-- /.btn-group -->
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-icon" data-toggle="tooltip" title="Reload" data-container="body"><i class="icon-refresh"></i></button>
+                    <button type="button" class="btn btn-default btn-icon" data-toggle="tooltip" title="Mark as" data-container="body"><i class="icon-envelope-open"></i></button>
+                  </div><!-- /.btn-group -->
+                </div><!-- /.btn-toolbar -->
+              </div><!-- /.inbox-paper-heading -->
 
-            <div class="pure-u-3-4">
-                <h5 class="email-name">Yahoo! News</h5>
-                <h4 class="email-subject">Summary for April 3rd, 2012</h4>
-                <p class="email-desc">
-                    We found 10 news articles that you may like.
-                </p>
-            </div>
-        </div>
-    </div>
 
-    <div id="main" class="pure-u-1">
-        <div class="email-content">
-            <div class="email-content-header pure-g">
-                <div class="pure-u-1-2">
-                    <h1 class="email-content-title">Hello from Toronto</h1>
-                    <p class="email-content-subtitle">
-                        From <a>Tilo Mitra</a> at <span>3:56pm, April 3, 2012</span>
-                    </p>
-                </div>
+              <div class="inbox-paper-body">
+                <div class="inbox-list">
+                  <div class="panel inbox-list-item" data-fill-color="true">
+                    <div class="panel-heading">
+                      <!-- show on expand -->
+                      <div class="panel-control mt-2x pull-right show-on-expand">
+                        <div class="dropdown">
+                          <a href="#" class="btn btn-icon btn-default dropdow-toggle" data-toggle="dropdown"><i class="icon-options-vertical"></i></a>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">Reply</a></li>
+                            <li><a href="#">Forward</a></li>
+                            <li><a href="#">Move to</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Print</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Delete</a></li>
+                          </ul>
+                        </div>
+                      </div><!-- /.panel-control -->
+                      <div class="media show-on-expand">
+                        <div class="media-left" data-toggle="panel-expand">
+                          <button class="btn btn-icon btn-default"><i class="icon-arrow-left"></i></button>
+                          <div class="kit-avatar kit-avatar-32 no-border">
+                            <img class="media-object" src="/static/images/logo/brand.png">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <h4 class="media-heading"><strong>Stilearning</strong> - Say Hi! to wrapkit 1.1 <span class="icon-pin ml-1x"></span></h4>
+                          <p class="text-muted"><small>10 Minutes</small></p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on expand -->
 
-                <div class="email-content-controls pure-u-1-2">
-                    <button class="secondary-button pure-button">Reply</button>
-                    <button class="secondary-button pure-button">Forward</button>
-                    <button class="secondary-button pure-button">Move to</button>
-                </div>
-            </div>
+                      <!-- hide on expand -->
+                      <div class="media hide-on-expand" data-toggle="panel-expand">
+                        <div class="media-left">
+                          <div class="kit-avatar kit-avatar-42 no-border">
+                            <img class="media-object" src="/static/images/logo/brand.png">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <p class="pull-right text-muted hide-on-expand"><small><span class="fa fa-circle-o text-teal mr-1x"></span> <span class="hidden-xs">10 Minutes</span></small></p>
+                          <h4 class="media-heading"><strong>Stilearning</strong> - Say Hi! to wrapkit 1.1 <span class="icon-pin ml-1x"></span></h4>
+                          <p class="text-muted hidden-xs">Eaque dolorem non quam quidem aspernatur animi laborum cupiditate vitae nemo, doloremque?</p>
+                          <p class="text-muted visible-xs">10 Minutes</p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on collapse -->
+                    </div><!-- /.panel-heading -->
 
-            <div class="email-content-body">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-                <p>
-                    Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-                <p>
-                    Aliquam ac feugiat dolor. Proin mattis massa sit amet enim iaculis tincidunt. Mauris tempor mi vitae sem aliquet pharetra. Fusce in dui purus, nec malesuada mauris. Curabitur ornare arcu quis mi blandit laoreet. Vivamus imperdiet fermentum mauris, ac posuere urna tempor at. Duis pellentesque justo ac sapien aliquet egestas. Morbi enim mi, porta eget ullamcorper at, pharetra id lorem.
-                </p>
-                <p>
-                    Donec sagittis dolor ut quam pharetra pretium varius in nibh. Suspendisse potenti. Donec imperdiet, velit vel adipiscing bibendum, leo eros tristique augue, eu rutrum lacus sapien vel quam. Nam orci arcu, luctus quis vestibulum ut, ullamcorper ut enim. Morbi semper erat quis orci aliquet condimentum. Nam interdum mauris sed massa dignissim rhoncus.
-                </p>
-                <p>
-                    Regards,<br>
-                    Tilo
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+                    <div class="panel-body show-on-expand">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta aperiam consectetur similique quasi vero vitae velit, quo mollitia. Aliquid aperiam in saepe, repellat explicabo autem nam velit reiciendis porro recusandae?</p>
+                      <p class="lead">Illo doloribus maxime quibusdam alias repellendus rerum minus ad vero nulla omnis eum non, nisi corporis eveniet perferendis error vitae, animi tempora aut, reprehenderit! Laudantium consequatur culpa esse neque quod.</p>
+                      <p>Praesentium sit enim corrupti quia nobis, obcaecati nostrum voluptatem totam nulla delectus ipsa facilis optio quis. Temporibus ad delectus veritatis dolorem culpa maiores minus eos quaerat explicabo id. Neque, doloribus!</p>
+                      <p>Dolores optio, pariatur dolorum neque libero deleniti alias, in qui ea labore dolor a asperiores! Iste quasi illo harum explicabo beatae vel, blanditiis eveniet rem tenetur amet omnis similique praesentium.</p>
+                      <br>
+                      <blockquote>Explicabo fuga blanditiis eligendi enim nihil? Omnis optio dolores architecto, maxime debitis, error ipsum iure laudantium odio recusandae vel quis!</blockquote>
+                      <br>
+                      <p>Mollitia nemo fugit esse assumenda, numquam natus praesentium nostrum veniam odit ipsa velit ratione temporibus reprehenderit aspernatur, alias aliquid saepe corrupti debitis dolorum! Molestiae quod beatae nemo possimus mollitia doloremque.</p>
+                      <br>
+                      <p>Regards, <br><br><br>Stilearning</p>
 
-<script src="http://yui.yahooapis.com/3.17.2/build/yui/yui-min.js"></script>
+                      <div class="panel mt-4x" data-context="light" data-fill-color="true">
+                        <div class="panel-body">
+                          <p class="title">Attachments</p>
+                          <div class="media">
+                            <div class="pull-left text-muted">
+                              <i class="fa fa-file-zip-o fa-2x"></i>
+                            </div>
+                            <div class="media-body">
+                              <div>
+                                <div class="pull-right"><a href="#" class="btn btn-default btn-xs">Download</a></div>
+                                <strong>build-1301.zip</strong>
+                              </div>
+                              <div class="text-muted"><small>Latest production of wrapkit</small></div>
+                            </div>
+                          </div>
+                          <div class="media">
+                            <div class="pull-left text-muted">
+                              <i class="fa fa-file-zip-o fa-2x"></i>
+                            </div>
+                            <div class="media-body">
+                              <div>
+                                <div class="pull-right"><a href="#" class="btn btn-default btn-xs">Download</a></div>
+                                <strong>design-brief.zip</strong>
+                              </div>
+                              <div class="text-muted"><small>Latest version of wrapkit</small></div>
+                            </div>
+                          </div>
+                          <div class="media">
+                            <div class="pull-left text-muted">
+                              <i class="fa fa-file-excel-o fa-2x"></i>
+                            </div>
+                            <div class="media-body">
+                              <div>
+                                <div class="pull-right"><a href="#" class="btn btn-default btn-xs">Download</a></div>
+                                <strong>data-verified.json</strong>
+                              </div>
+                              <div class="text-muted"><small>Update by Iin</small></div>
+                            </div>
+                          </div>
+                        </div><!-- /.panel-body -->
+                      </div><!-- /.panel -->
+                      <form action="#" role="form">
+                        <div class="form-group">
+                          <textarea class="form-control autogrow" name="replayInput" rows="3" placeholder="Reply form here.."></textarea>
+                        </div>
+                        <div class="form-group text-right">
+                          <button class="btn btn-default">Save to draft</button>
+                          <button class="btn btn-success">Reply</button>
+                        </div>
+                      </form><!-- /[form]-->
+                    </div><!-- /.panel-body -->
+                  </div><!-- /.panel.inbox-list-item -->
 
-<script>
-    YUI().use('node-base', 'node-event-delegate', function (Y) {
 
-        var menuButton = Y.one('.nav-menu-button'),
-            nav        = Y.one('#nav');
+                  <div class="panel inbox-list-item" data-fill-color="true">
+                    <div class="panel-heading">
+                      <!-- show on expand -->
+                      <div class="panel-control mt-2x pull-right show-on-expand">
+                        <div class="dropdown">
+                          <a href="#" class="btn btn-icon btn-default dropdow-toggle" data-toggle="dropdown"><i class="icon-options-vertical"></i></a>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">Reply</a></li>
+                            <li><a href="#">Forward</a></li>
+                            <li><a href="#">Move to</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Print</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Delete</a></li>
+                          </ul>
+                        </div>
+                      </div><!-- /.panel-control -->
+                      <div class="media show-on-expand">
+                        <div class="media-left" data-toggle="panel-expand">
+                          <button class="btn btn-icon btn-default"><i class="icon-arrow-left"></i></button>
+                          <div class="kit-avatar kit-avatar-32 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces20.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <h4 class="media-heading"><strong>Evelyn Walsh</strong> - Newest Themes & Templates (3) <span class="icon-pin ml-1x"></span></h4>
+                          <p class="text-muted"><small>04:30 AM</small></p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on expand -->
 
-        // Setting the active class name expands the menu vertically on small screens.
-        menuButton.on('click', function (e) {
-            nav.toggleClass('active');
-        });
+                      <!-- hide on expand -->
+                      <div class="media hide-on-expand" data-toggle="panel-expand">
+                        <div class="media-left">
+                          <div class="kit-avatar kit-avatar-42 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces20.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <p class="pull-right text-muted hide-on-expand"><small><span class="fa fa-circle-o text-teal mr-1x"></span> <span class="hidden-xs">04:30 AM</span></small></p>
+                          <h4 class="media-heading"><strong>Evelyn Walsh</strong> - Newest Themes & Templates (3) <span class="icon-pin ml-1x"></span></h4>
+                          <p class="text-muted hidden-xs">Obcaecati autem voluptate, repudiandae eius laborum velit quia laudantium veritatis facere natus!</p>
+                          <p class="text-muted visible-xs">04:30 AM</p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on collapse -->
+                    </div><!-- /.panel-heading -->
 
-        // Your application code goes here...
+                    <div class="panel-body show-on-expand">
+                      <p class="lead">Eaque nulla, obcaecati facere minus sed ipsum veritatis. Similique dolorem nisi eligendi sed facilis corrupti quod ea quibusdam, unde. Ratione, consectetur, id?</p>
+                      <br>
+                      <p>Cheers,</p>
+                      <br>
+                      <form action="#" role="form">
+                        <div class="form-group">
+                          <textarea class="form-control autogrow" name="replayInput" rows="3" placeholder="Reply form here.."></textarea>
+                        </div>
+                        <div class="form-group text-right">
+                          <button class="btn btn-default">Save to draft</button>
+                          <button class="btn btn-success">Reply</button>
+                        </div>
+                      </form><!-- /[form]-->
+                    </div><!-- /.panel-body -->
+                  </div><!-- /.panel.inbox-list-item -->
 
-    });
-</script>
+
+                  <div class="panel inbox-list-item" data-fill-color="true">
+                    <div class="panel-heading">
+                      <!-- show on expand -->
+                      <div class="panel-control mt-2x pull-right show-on-expand">
+                        <div class="dropdown">
+                          <a href="#" class="btn btn-icon btn-default dropdow-toggle" data-toggle="dropdown"><i class="icon-options-vertical"></i></a>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">Reply</a></li>
+                            <li><a href="#">Forward</a></li>
+                            <li><a href="#">Move to</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Print</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Delete</a></li>
+                          </ul>
+                        </div>
+                      </div><!-- /.panel-control -->
+                      <div class="media show-on-expand">
+                        <div class="media-left" data-toggle="panel-expand">
+                          <button class="btn btn-icon btn-default"><i class="icon-arrow-left"></i></button>
+                          <div class="kit-avatar kit-avatar-32 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces19.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <h4 class="media-heading"><strong>John Moreno</strong> - Service Update: added support for Angular</h4>
+                          <p class="text-muted"><small>03:11 AM</small></p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on expand -->
+
+                      <!-- hide on expand -->
+                      <div class="media hide-on-expand" data-toggle="panel-expand">
+                        <div class="media-left">
+                          <div class="kit-avatar kit-avatar-42 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces19.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <p class="pull-right text-muted hide-on-expand"><small><span class="fa fa-circle-o text-red mr-1x"></span> <span class="hidden-xs">03:11 AM</span></small></p>
+                          <h4 class="media-heading"><strong>John Moreno</strong> - Service Update: added support for Angular</h4>
+                          <p class="text-muted hidden-xs">Quis perferendis nesciunt sint provident, modi voluptatibus quaerat repudiandae, non quibusdam sunt.</p>
+                          <p class="text-muted visible-xs">03:11 AM</p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on collapse -->
+                    </div><!-- /.panel-heading -->
+
+                    <div class="panel-body show-on-expand">
+                      <p>Asperiores aspernatur aliquam iusto earum. Temporibus aperiam pariatur expedita repellat voluptatibus, eligendi delectus, doloremque sed consequuntur magnam provident nostrum, totam mollitia earum!</p>
+                      <p>Quaerat esse velit voluptatum ab placeat modi quasi adipisci. Laboriosam vel, temporibus, provident fugiat illum placeat alias eos ullam. Reprehenderit, aspernatur, fuga!</p>
+                      <br>
+                      <form action="#" role="form">
+                        <div class="form-group">
+                          <textarea class="form-control autogrow" name="replayInput" rows="3" placeholder="Reply form here.."></textarea>
+                        </div>
+                        <div class="form-group text-right">
+                          <button class="btn btn-default">Save to draft</button>
+                          <button class="btn btn-success">Reply</button>
+                        </div>
+                      </form><!-- /[form]-->
+                    </div><!-- /.panel-body -->
+                  </div><!-- /.panel.inbox-list-item -->
+
+
+                  <div class="panel inbox-list-item" data-fill-color="true">
+                    <div class="panel-heading">
+                      <!-- show on expand -->
+                      <div class="panel-control mt-2x pull-right show-on-expand">
+                        <div class="dropdown">
+                          <a href="#" class="btn btn-icon btn-default dropdow-toggle" data-toggle="dropdown"><i class="icon-options-vertical"></i></a>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">Reply</a></li>
+                            <li><a href="#">Forward</a></li>
+                            <li><a href="#">Move to</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Print</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Delete</a></li>
+                          </ul>
+                        </div>
+                      </div><!-- /.panel-control -->
+                      <div class="media show-on-expand">
+                        <div class="media-left" data-toggle="panel-expand">
+                          <button class="btn btn-icon btn-default"><i class="icon-arrow-left"></i></button>
+                          <div class="kit-avatar kit-avatar-32 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces18.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <h4 class="media-heading"><strong>Kathy Rice</strong> - Spread the Word & Earn!</h4>
+                          <p class="text-muted"><small>02:47 AM</small></p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on expand -->
+
+                      <!-- hide on expand -->
+                      <div class="media hide-on-expand" data-toggle="panel-expand">
+                        <div class="media-left">
+                          <div class="kit-avatar kit-avatar-42 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces18.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <p class="pull-right text-muted hide-on-expand"><small><span class="fa fa-circle-o text-blue mr-1x"></span> <span class="hidden-xs">02:47 AM</span></small></p>
+                          <h4 class="media-heading"><strong>Kathy Rice</strong> - Spread the Word & Earn!</h4>
+                          <p class="text-muted hidden-xs">Corporis, eaque sapiente dolorum quia nemo iure pariatur ab sint ipsum fugit?</p>
+                          <p class="text-muted visible-xs">02:47 AM</p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on collapse -->
+                    </div><!-- /.panel-heading -->
+
+                    <div class="panel-body show-on-expand">
+                      <p>Itaque qui sed nobis. Distinctio natus explicabo facilis dolorum dolor impedit amet laudantium ab beatae molestias mollitia possimus eveniet asperiores, aliquam eos!</p>
+                      <p>Sed necessitatibus unde saepe laboriosam vero tempore, eveniet similique aperiam! Dolor ipsum rerum, et quas adipisci mollitia, aspernatur nihil nisi tempore accusamus libero nesciunt laboriosam ex officia illo accusantium placeat.</p>
+                      <p>Eos enim molestias vitae quaerat nulla quisquam laborum eveniet natus incidunt optio eligendi ipsum nisi consequatur adipisci ducimus, accusamus voluptatem quae! Ducimus fugit qui nam, molestiae impedit rem eius repellendus.</p>
+                      <br>
+                      <form action="#" role="form">
+                        <div class="form-group">
+                          <textarea class="form-control autogrow" name="replayInput" rows="3" placeholder="Reply form here.."></textarea>
+                        </div>
+                        <div class="form-group text-right">
+                          <button class="btn btn-default">Save to draft</button>
+                          <button class="btn btn-success">Reply</button>
+                        </div>
+                      </form><!-- /[form]-->
+                    </div><!-- /.panel-body -->
+                  </div><!-- /.panel.inbox-list-item -->
+
+
+                  <div class="panel inbox-list-item" data-fill-color="true">
+                    <div class="panel-heading">
+                      <!-- show on expand -->
+                      <div class="panel-control mt-2x pull-right show-on-expand">
+                        <div class="dropdown">
+                          <a href="#" class="btn btn-icon btn-default dropdow-toggle" data-toggle="dropdown"><i class="icon-options-vertical"></i></a>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">Reply</a></li>
+                            <li><a href="#">Forward</a></li>
+                            <li><a href="#">Move to</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Print</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Delete</a></li>
+                          </ul>
+                        </div>
+                      </div><!-- /.panel-control -->
+                      <div class="media show-on-expand">
+                        <div class="media-left" data-toggle="panel-expand">
+                          <button class="btn btn-icon btn-default"><i class="icon-arrow-left"></i></button>
+                          <div class="kit-avatar kit-avatar-32 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces17.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <h4 class="media-heading"><strong>Megan Webb</strong> - Say thanks for your awesome works!</h4>
+                          <p class="text-muted"><small>Yesterday, 11:41 PM</small></p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on expand -->
+
+                      <!-- hide on expand -->
+                      <div class="media hide-on-expand" data-toggle="panel-expand">
+                        <div class="media-left">
+                          <div class="kit-avatar kit-avatar-42 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces17.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <p class="pull-right text-muted hide-on-expand"><small><span class="fa fa-circle-o text-orange mr-1x"></span> <span class="hidden-xs">Yesterday</span></small></p>
+                          <h4 class="media-heading"><strong>Megan Webb</strong> - Say thanks for your awesome works!</h4>
+                          <p class="text-muted hidden-xs">Eius aliquid, placeat ducimus adipisci, eveniet consectetur fugit ex maxime minima molestiae?</p>
+                          <p class="text-muted visible-xs">Yesterday</p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on collapse -->
+                    </div><!-- /.panel-heading -->
+
+                    <div class="panel-body show-on-expand">
+                      <p>Blanditiis animi labore commodi veniam. Quibusdam suscipit non, illo asperiores debitis, cupiditate reprehenderit maxime adipisci voluptatibus quas quo consectetur quisquam minima velit!</p>
+                      <p>Commodi eum nam vel consectetur ab consequuntur iure hic maxime suscipit nostrum rerum neque dignissimos, inventore at incidunt voluptatum, distinctio aperiam pariatur velit esse provident debitis quaerat. Pariatur, magnam, ratione?</p>
+                      <br>
+                      <p>Thanks,</p>
+                      <br>
+                      <form action="#" role="form">
+                        <div class="form-group">
+                          <textarea class="form-control autogrow" name="replayInput" rows="3" placeholder="Reply form here.."></textarea>
+                        </div>
+                        <div class="form-group text-right">
+                          <button class="btn btn-default">Save to draft</button>
+                          <button class="btn btn-success">Reply</button>
+                        </div>
+                      </form><!-- /[form]-->
+                    </div><!-- /.panel-body -->
+                  </div><!-- /.panel.inbox-list-item -->
+
+
+                  <div class="panel inbox-list-item" data-fill-color="true">
+                    <div class="panel-heading">
+                      <!-- show on expand -->
+                      <div class="panel-control mt-2x pull-right show-on-expand">
+                        <div class="dropdown">
+                          <a href="#" class="btn btn-icon btn-default dropdow-toggle" data-toggle="dropdown"><i class="icon-options-vertical"></i></a>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">Reply</a></li>
+                            <li><a href="#">Forward</a></li>
+                            <li><a href="#">Move to</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Print</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Delete</a></li>
+                          </ul>
+                        </div>
+                      </div><!-- /.panel-control -->
+                      <div class="media show-on-expand">
+                        <div class="media-left" data-toggle="panel-expand">
+                          <button class="btn btn-icon btn-default"><i class="icon-arrow-left"></i></button>
+                          <div class="kit-avatar kit-avatar-32 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces16.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <h4 class="media-heading"><strong>Kimberly Harper</strong> - Need help getting started <span class="icon-pin ml-1x"></span></h4>
+                          <p class="text-muted"><small>Yesterday, 10:04 PM</small></p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on expand -->
+
+                      <!-- hide on expand -->
+                      <div class="media hide-on-expand" data-toggle="panel-expand">
+                        <div class="media-left">
+                          <div class="kit-avatar kit-avatar-42 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces16.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <p class="pull-right text-muted hide-on-expand"><small><span class="fa fa-circle-o text-red mr-1x"></span> <span class="hidden-xs">Yesterday</span></small></p>
+                          <h4 class="media-heading"><strong>Kimberly Harper</strong> - Need help getting started <span class="icon-pin ml-1x"></span></h4>
+                          <p class="text-muted hidden-xs">Veniam commodi quasi quisquam labore? Nisi, officia ducimus architecto iste reiciendis perspiciatis.</p>
+                          <p class="text-muted visible-xs">Yesterday</p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on collapse -->
+                    </div><!-- /.panel-heading -->
+
+                    <div class="panel-body show-on-expand">
+                      <p>Eaque nulla, obcaecati facere minus sed ipsum veritatis. Similique dolorem nisi eligendi sed facilis corrupti quod ea quibusdam, unde. Ratione, consectetur, id?</p>
+                      <br>
+                      <p>Thanks,</p>
+                      <p>Kimberly</p>
+                      <br>
+                      <form action="#" role="form">
+                        <div class="form-group">
+                          <textarea class="form-control autogrow" name="replayInput" rows="3" placeholder="Reply form here.."></textarea>
+                        </div>
+                        <div class="form-group text-right">
+                          <button class="btn btn-default">Save to draft</button>
+                          <button class="btn btn-success">Reply</button>
+                        </div>
+                      </form><!-- /[form]-->
+                    </div><!-- /.panel-body -->
+                  </div><!-- /.panel.inbox-list-item -->
+
+
+                  <div class="panel inbox-list-item" data-fill-color="true">
+                    <div class="panel-heading">
+                      <!-- show on expand -->
+                      <div class="panel-control mt-2x pull-right show-on-expand">
+                        <div class="dropdown">
+                          <a href="#" class="btn btn-icon btn-default dropdow-toggle" data-toggle="dropdown"><i class="icon-options-vertical"></i></a>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">Reply</a></li>
+                            <li><a href="#">Forward</a></li>
+                            <li><a href="#">Move to</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Print</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Delete</a></li>
+                          </ul>
+                        </div>
+                      </div><!-- /.panel-control -->
+                      <div class="media show-on-expand">
+                        <div class="media-left" data-toggle="panel-expand">
+                          <button class="btn btn-icon btn-default"><i class="icon-arrow-left"></i></button>
+                          <div class="kit-avatar kit-avatar-32 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces15.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <h4 class="media-heading"><strong>Willie Ruiz</strong> - Design brief from Tejo <span class="icon-pin ml-1x"></span></h4>
+                          <p class="text-muted"><small>Yesterday, 08:55 PM</small></p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on expand -->
+
+                      <!-- hide on expand -->
+                      <div class="media hide-on-expand" data-toggle="panel-expand">
+                        <div class="media-left">
+                          <div class="kit-avatar kit-avatar-42 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces15.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <p class="pull-right text-muted hide-on-expand"><small><span class="fa fa-circle-o text-teal mr-1x"></span> <span class="hidden-xs">Yesterday</span></small></p>
+                          <h4 class="media-heading"><strong>Willie Ruiz</strong> - Design brief from Tejo <span class="icon-pin ml-1x"></span></h4>
+                          <p class="text-muted hidden-xs">Illum iste repellendus sint est repellat error itaque provident totam rem officia.</p>
+                          <p class="text-muted visible-xs">Yesterday</p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on collapse -->
+                    </div><!-- /.panel-heading -->
+
+                    <div class="panel-body show-on-expand">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad id ut numquam quam, maxime assumenda fugiat consectetur minus sed quod accusantium, quaerat, eveniet! Numquam et, consequuntur cupiditate ut maxime veritatis.</p>
+                      <p>Enim minima voluptatibus assumenda aliquam deleniti velit quod modi placeat quo sapiente ipsam nam iusto eligendi, cum harum voluptatem officiis itaque doloremque reprehenderit veritatis similique hic beatae omnis labore. Soluta.</p>
+                      <p>Vero ab perspiciatis fugiat non enim illo facilis neque placeat laboriosam deleniti, quos autem nobis, commodi iure quidem quis possimus tempore. Ipsam, debitis, molestias. Reprehenderit recusandae vero velit, possimus cum!</p>
+                      <p>Pariatur delectus totam repellat saepe atque nihil consectetur ad. Aspernatur fugiat vitae eaque, explicabo voluptatibus sapiente earum necessitatibus, magni voluptates natus non quasi ad sunt a maiores quo esse odit.</p>
+                      <p>Necessitatibus ullam in minus deleniti, pariatur maiores. Neque eveniet nemo, quisquam libero velit iure repellat maiores voluptate debitis rerum adipisci vel, corporis ea nobis eaque. Officia pariatur commodi nesciunt tempora.</p>
+                      <br>
+                      <form action="#" role="form">
+                        <div class="form-group">
+                          <textarea class="form-control autogrow" name="replayInput" rows="3" placeholder="Reply form here.."></textarea>
+                        </div>
+                        <div class="form-group text-right">
+                          <button class="btn btn-default">Save to draft</button>
+                          <button class="btn btn-success">Reply</button>
+                        </div>
+                      </form><!-- /[form]-->
+                    </div><!-- /.panel-body -->
+                  </div><!-- /.panel.inbox-list-item -->
+
+
+                  <div class="panel inbox-list-item" data-fill-color="true">
+                    <div class="panel-heading">
+                      <!-- show on expand -->
+                      <div class="panel-control mt-2x pull-right show-on-expand">
+                        <div class="dropdown">
+                          <a href="#" class="btn btn-icon btn-default dropdow-toggle" data-toggle="dropdown"><i class="icon-options-vertical"></i></a>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">Reply</a></li>
+                            <li><a href="#">Forward</a></li>
+                            <li><a href="#">Move to</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Print</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Delete</a></li>
+                          </ul>
+                        </div>
+                      </div><!-- /.panel-control -->
+                      <div class="media show-on-expand">
+                        <div class="media-left" data-toggle="panel-expand">
+                          <button class="btn btn-icon btn-default"><i class="icon-arrow-left"></i></button>
+                          <div class="kit-avatar kit-avatar-32 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces14.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <h4 class="media-heading"><strong>Ruth Payne</strong> - Updating some of the designs!</h4>
+                          <p class="text-muted"><small>Sep 12, 2015</small></p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on expand -->
+
+                      <!-- hide on expand -->
+                      <div class="media hide-on-expand" data-toggle="panel-expand">
+                        <div class="media-left">
+                          <div class="kit-avatar kit-avatar-42 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces14.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <p class="pull-right text-muted hide-on-expand"><small><span class="fa fa-circle-o text-blue mr-1x"></span> <span class="hidden-xs">Sep 12, 2015</span></small></p>
+                          <h4 class="media-heading"><strong>Ruth Payne</strong> - Updating some of the designs!</h4>
+                          <p class="text-muted hidden-xs">Rem quisquam natus molestiae facilis perferendis hic modi laudantium nisi eius repellat?</p>
+                          <p class="text-muted visible-xs">Sep 12, 2015</p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on collapse -->
+                    </div><!-- /.panel-heading -->
+
+                    <div class="panel-body show-on-expand">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores nobis, cumque totam nam! Quia recusandae ipsum culpa commodi repellendus soluta inventore tempore consectetur dignissimos dolore qui, facilis accusantium, aperiam quaerat.</p>
+                      <p>Nostrum, atque, a obcaecati harum quo rem quidem beatae dignissimos! Architecto iusto fuga omnis sit sint dignissimos error quisquam dolorum, fugit minima officia modi magnam ab ullam aspernatur voluptas et!</p>
+                      <br>
+                      <p>Regards,</p>
+                      <br>
+                      <form action="#" role="form">
+                        <div class="form-group">
+                          <textarea class="form-control autogrow" name="replayInput" rows="3" placeholder="Reply form here.."></textarea>
+                        </div>
+                        <div class="form-group text-right">
+                          <button class="btn btn-default">Save to draft</button>
+                          <button class="btn btn-success">Reply</button>
+                        </div>
+                      </form><!-- /[form]-->
+                    </div><!-- /.panel-body -->
+                  </div><!-- /.panel.inbox-list-item -->
+
+
+                  <div class="panel inbox-list-item" data-fill-color="true">
+                    <div class="panel-heading">
+                      <!-- show on expand -->
+                      <div class="panel-control mt-2x pull-right show-on-expand">
+                        <div class="dropdown">
+                          <a href="#" class="btn btn-icon btn-default dropdow-toggle" data-toggle="dropdown"><i class="icon-options-vertical"></i></a>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">Reply</a></li>
+                            <li><a href="#">Forward</a></li>
+                            <li><a href="#">Move to</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Print</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Delete</a></li>
+                          </ul>
+                        </div>
+                      </div><!-- /.panel-control -->
+                      <div class="media show-on-expand">
+                        <div class="media-left" data-toggle="panel-expand">
+                          <button class="btn btn-icon btn-default"><i class="icon-arrow-left"></i></button>
+                          <div class="kit-avatar kit-avatar-32 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces13.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <h4 class="media-heading"><strong>Jacob Rodriguez</strong> - Server down - I want to access the demo page</h4>
+                          <p class="text-muted"><small>Sep 11, 2015</small></p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on expand -->
+
+                      <!-- hide on expand -->
+                      <div class="media hide-on-expand" data-toggle="panel-expand">
+                        <div class="media-left">
+                          <div class="kit-avatar kit-avatar-42 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces13.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <p class="pull-right text-muted hide-on-expand"><small><span class="fa fa-circle-o text-red mr-1x"></span> <span class="hidden-xs">Sep 11, 2015</span></small></p>
+                          <h4 class="media-heading"><strong>Jacob Rodriguez</strong> - Server down - I want to access the demo page</h4>
+                          <p class="text-muted hidden-xs">Suscipit explicabo voluptas perferendis, commodi dicta rerum aliquam sit, porro dolor ipsa.</p>
+                          <p class="text-muted visible-xs">Sep 11, 2015</p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on collapse -->
+                    </div><!-- /.panel-heading -->
+
+                    <div class="panel-body show-on-expand">
+                      <p>Eaque nulla, obcaecati facere minus sed ipsum veritatis. Similique dolorem nisi eligendi sed facilis corrupti quod ea quibusdam, unde. Ratione, consectetur, id?</p>
+                      <br>
+                      <form action="#" role="form">
+                        <div class="form-group">
+                          <textarea class="form-control autogrow" name="replayInput" rows="3" placeholder="Reply form here.."></textarea>
+                        </div>
+                        <div class="form-group text-right">
+                          <button class="btn btn-default">Save to draft</button>
+                          <button class="btn btn-success">Reply</button>
+                        </div>
+                      </form><!-- /[form]-->
+                    </div><!-- /.panel-body -->
+                  </div><!-- /.panel.inbox-list-item -->
+
+
+                  <div class="panel inbox-list-item" data-fill-color="true">
+                    <div class="panel-heading">
+                      <!-- show on expand -->
+                      <div class="panel-control mt-2x pull-right show-on-expand">
+                        <div class="dropdown">
+                          <a href="#" class="btn btn-icon btn-default dropdow-toggle" data-toggle="dropdown"><i class="icon-options-vertical"></i></a>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">Reply</a></li>
+                            <li><a href="#">Forward</a></li>
+                            <li><a href="#">Move to</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Print</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Delete</a></li>
+                          </ul>
+                        </div>
+                      </div><!-- /.panel-control -->
+                      <div class="media show-on-expand">
+                        <div class="media-left" data-toggle="panel-expand">
+                          <button class="btn btn-icon btn-default"><i class="icon-arrow-left"></i></button>
+                          <div class="kit-avatar kit-avatar-32 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces12.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <h4 class="media-heading"><strong>Anna Hall</strong> - Request custom designs! <span class="icon-pin ml-1x"></span></h4>
+                          <p class="text-muted"><small>Sep 11, 2015</small></p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on expand -->
+
+                      <!-- hide on expand -->
+                      <div class="media hide-on-expand" data-toggle="panel-expand">
+                        <div class="media-left">
+                          <div class="kit-avatar kit-avatar-42 no-border">
+                            <img class="media-object" src="/static/images/dummy/uifaces12.jpg">
+                          </div>
+                        </div><!-- /.media-left -->
+                        <div class="media-body">
+                          <p class="pull-right text-muted hide-on-expand"><small><span class="fa fa-circle-o text-red mr-1x"></span> <span class="hidden-xs">Sep 11, 2015</span></small></p>
+                          <h4 class="media-heading"><strong>Anna Hall</strong> - Request custom designs! <span class="icon-pin ml-1x"></span></h4>
+                          <p class="text-muted hidden-xs">Fugit asperiores labore delectus aperiam natus aut ipsum rerum porro amet culpa?</p>
+                          <p class="text-muted visible-xs">Sep 11, 2015</p>
+                        </div><!-- /.media-body -->
+                      </div><!-- /.media on collapse -->
+                    </div><!-- /.panel-heading -->
+
+                    <div class="panel-body show-on-expand">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum at delectus excepturi, porro error laudantium, nemo quidem quos possimus, eveniet doloremque eius repellendus perspiciatis blanditiis deleniti commodi, unde! Cumque, nostrum.</p>
+                      <p>Nisi, iste, eum. Quod omnis repellat deleniti quis fuga inventore, neque accusamus aperiam quidem! Recusandae minus odio consequuntur, laborum assumenda provident tenetur rerum minima saepe beatae rem atque dolor sequi.</p>
+                      <p>Totam voluptatum cumque laborum cum dicta in ea facere tenetur dolorem quis aliquam odit debitis laudantium sapiente nulla similique magni accusantium excepturi eaque blanditiis dolorum eos laboriosam natus, esse. Amet!</p>
+                      <p>Ullam iure saepe reprehenderit minus, rerum, libero vero quisquam quam. Quod mollitia consequuntur, illum repellendus dignissimos ullam cupiditate, id expedita facilis modi, explicabo eos tenetur praesentium autem dolore vero perferendis.</p>
+                      <p>Vel ut tempora sint saepe eligendi optio officiis cupiditate dicta quo illo, assumenda, amet ea voluptas, et hic harum quisquam incidunt a veritatis accusantium nam beatae nulla numquam. Non, eveniet!</p>
+                      <p>Ratione possimus eligendi fugit sequi eveniet earum iste odit fuga totam voluptatem ad molestias, voluptatibus, aliquam, nostrum adipisci, natus vitae? Qui at possimus labore voluptates beatae corporis id itaque, fugit?</p>
+                      <br>
+                      <form action="#" role="form">
+                        <div class="form-group">
+                          <textarea class="form-control autogrow" name="replayInput" rows="3" placeholder="Reply form here.."></textarea>
+                        </div>
+                        <div class="form-group text-right">
+                          <button class="btn btn-default">Save to draft</button>
+                          <button class="btn btn-success">Reply</button>
+                        </div>
+                      </form><!-- /[form]-->
+                    </div><!-- /.panel-body -->
+                  </div><!-- /.panel.inbox-list-item -->
+                </div><!-- /.inbox-list -->
+
+
+              </div><!-- /.inbox-paper-body -->
+
+
+              <div class="inbox-paper-footer">
+                <div class="btn-toolbar">
+                  <div class="dropup pull-right">
+                    <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" rel="tooltip" data-placement="bottom" title="More" data-container="body"><i class="icon-options"></i></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li><a href="#">Add Label</a></li>
+                      <li><a href="#">Add Contact</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Appearances</a></li>
+                      <li><a href="#">Setups</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Help</a></li>
+                    </ul>
+                  </div><!-- /.dropdown -->
+                  <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-default btn-icon" data-toggle="tooltip" data-placement="bottom" title="Previous" data-container="body"><i class="icon-arrow-left"></i></button>
+                    <div class="btn btn-default btn-icon" data-toggle="tooltip" data-placement="bottom" title="Page 1 of 26" data-container="body">1 / 26</div>
+                    <button type="button" class="btn btn-default btn-icon" data-toggle="tooltip" data-placement="bottom" title="Next" data-container="body"><i class="icon-arrow-right"></i></button>
+                  </div><!-- /.btn-group -->
+
+                  <div class="btn-group">
+                    <div class="nice-checkbox no-margin mt-1x help-inline" data-toggle="tooltip" data-placement="bottom" title="Select" data-container="body">
+                      <input type="checkbox" id="select-all-b">
+                      <label for="select-all-b">&nbsp;</label>
+                    </div>
+                  </div><!-- /.btn-group -->
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-icon" data-toggle="tooltip" data-placement="bottom" title="Reload" data-container="body"><i class="icon-refresh"></i></button>
+                    <button type="button" class="btn btn-default btn-icon" data-toggle="tooltip" data-placement="bottom" title="Mark as" data-container="body"><i class="icon-envelope-open"></i></button>
+                  </div><!-- /.btn-group -->
+                </div><!-- /.btn-toolbar -->
+              </div><!-- /.inbox-paper-footer -->
+            </div><!-- /.inbox-paper -->
+          </div><!-- /.inbox-wrapper -->
+
+        </div><!-- /.content-body -->
+
+
+        <!-- Template Setups -->
+        <div class="modal fade" id="templateSetup">
+          <div class="modal-dialog">
+            <!-- modal-content -->
+            <div class="modal-content"></div>
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.templateSetup -->
+
+      </div><!-- /.content -->
+    </section><!-- /MAIN -->
+
+
+
+    <!-- ============================================
+    FOOTER SECTION
+    =============================================== -->
+    <footer class="footer-wrapper" role="contentinfo">
+      <div class="footer">
+        <div class="pull-right text-muted"><small>Currently v1.1</small></div>
+        <div>Wrapkit Template  &copy; 2015</div>
+      </div>
+    </footer><!-- /.FOOTER -->
+
+  </main><!-- /#MAIN -->
+
+
+  <!-- VENDORS : jQuery & Bootstrap -->
+  <script src="/static/scripts/vendor.js"></script>
+  <!-- END VENDORS -->
+
+  <!-- DEPENDENCIES : Required plugins -->
+  <script src="/static/scripts/dependencies.js"></script>
+  <!-- END DEPENDENCIES -->
+
+  <!-- WRAPKIT -->
+  <script src="/static/scripts/wrapkit.js"></script>
+  <!-- END WRAPKIT -->
+
+  <!-- WRAPKIT SETUPS -->
+  <script src="/static/scripts/wrapkit-setup.js"></script>
+  <!-- end WRAPKIT SETUPS -->
+
+  <!-- PLUGIN SETUPS: vendors & dependencies setups -->
+  <script src="/static/scripts/plugin-setups.js"></script>
+  <!-- END PLUGIN SETUPS -->
+
+  <!-- COMPONENTS -->
+  <script src="/static/scripts/toastr.js"></script>
+  <!-- END COMPONENTS -->
+
+  <!-- DUMMY: Use for demo -->
+  <script src="/static/scripts/demo/page-inbox-demo.js"></script>
 
 </body>
 </html>

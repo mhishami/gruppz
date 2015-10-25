@@ -29,16 +29,22 @@
 </head>
 <body>
 
-    <div class="header">
-        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-            <a class="pure-menu-heading" href="/">Gruppz</a>
-
-            <ul class="pure-menu-list">
-                <li class="pure-menu-item"><a href="/" class="pure-menu-link">Home</a></li>
-                <li class="pure-menu-item"><a href="/" class="pure-menu-link">Tour</a></li>
-                <li class="pure-menu-item"><a href="/auth/signup" class="pure-menu-link">Sign Up</a></li>
-                <li class="pure-menu-item"><a href="/auth/login" class="pure-menu-link button-warning pure-button">Login</a></li>
-            </ul>
+    <div class="custom-wrapper pure-g" id="menu">
+        <div class="pure-u-1 pure-u-md-1-3">
+            <div class="pure-menu">
+                <a href="#" class="pure-menu-heading custom-brand">Gruppz</a>
+                <a href="#" class="custom-toggle" id="toggle"><s class="bar"></s><s class="bar"></s></a>
+            </div>
+        </div>
+        <div class="pure-u-1 pure-u-md-2-3">
+            <div class="pure-menu pure-menu-horizontal custom-can-transform">
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">About</a></li>
+                    <li class="pure-menu-item"><a href="/auth/signup" class="pure-menu-link">Sign Up</a></li>
+                    <li class="pure-menu-item"><a href="/auth/login" class="pure-menu-link">Login</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -166,6 +172,7 @@
     </div>
     {% endblock %}
 
+    <script type="text/javascript" src="/static/js/custom.js"></script>
     {% block javascript %}
     {% endblock %}
 
