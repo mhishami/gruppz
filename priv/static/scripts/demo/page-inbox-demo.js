@@ -34,7 +34,7 @@
   toastr.options = {
     positionClass: 'toast-bottom-right'
   };
-  toastr.info( 'Gradient skin is enabled!' );
+  // toastr.info( 'Gradient skin is enabled!' );
 
 
   // Panel Tricky: keep body overflow = visible on panel expand

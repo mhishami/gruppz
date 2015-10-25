@@ -1,68 +1,10 @@
-<!DOCTYPE html>
-<html class="no-js">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes">
+{% extends "base.dtl" %}
 
-  <title>Gruppz - Inbox</title>
+{% block header %}
+<link rel="stylesheet" href="/static/styles/pages.css">
+{% endblock %}
 
-
-  <!-- favicon.ico and apple-touch-icon.png -->
-  <link rel="apple-touch-icon" sizes="57x57" href="/static/images/favicons/apple-touch-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/static/images/favicons/apple-touch-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/static/images/favicons/apple-touch-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/static/images/favicons/apple-touch-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/static/images/favicons/apple-touch-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/static/images/favicons/apple-touch-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/static/images/favicons/apple-touch-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/static/images/favicons/apple-touch-icon-152x152.png">
-  <link rel="icon" type="image/png" href="/static/images/favicons/favicon-32x32.png" sizes="32x32">
-  <link rel="icon" type="image/png" href="/static/images/favicons/favicon-96x96.png" sizes="96x96">
-  <link rel="icon" type="image/png" href="/static/images/favicons/favicon-16x16.png" sizes="16x16">
-  <link rel="manifest" href="/static/images/favicons/manifest.json">
-  <meta name="msapplication-TileColor" content="#2d89ef">
-  <meta name="msapplication-TileImage" content="images/favicons/mstile-144x144.png">
-  <meta name="theme-color" content="#ffffff">
-
-  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,700,600,300" rel="stylesheet" type="text/css">
-
-  <link rel="stylesheet" href="/static/styles/bootstrap.css">
-
-  <link rel="stylesheet" href="/static/styles/dependencies.css">
-
-  <link rel="stylesheet" href="/static/styles/wrapkit.css">
-
-  <link rel="stylesheet" href="/static/styles/pages.css">
-</head>
-<body>
-  <!--[if lt IE 9]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
-
-    <main class="wrapkit-wrapper" id="wrapper">
-
-    <!-- ============================================
-    HEADER SECTION
-    =============================================== -->
-    <!-- navigation -->
-    <nav class="header navbar">
-      <div class="container-fluid">
-        <!-- use .pull-*, couse we need this float on any screen size -->
-        <div class="pull-left">
-          <a class="navbar-brand" href="index.html" role="logo" aria-label="Logo">
-            <img class="logo" src="/static/images/logo/brand-text-dark.png" alt="Brand">
-          </a>
-          <button data-sidebar="toggleVisible" class="btn btn-icon navbar-btn">
-            <i class="fa fa-bars"></i>
-            <i class="fa fa-caret-down"></i>
-          </button>
-        </div>
-
-        <!-- use .pull-*, couse we need this float on any screen size -->
-        <div class="pull-right" role="navigation">
-          <a aria-label="Search" id="brandSearchNav" class="btn btn-icon navbar-btn" href="#"><i class="fa fa-search"></i></a>
+{% block barnav %}
 
           <div class="dropdown-ext">
             <a aria-label="notifications" class="btn btn-icon navbar-btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -199,217 +141,13 @@
               <li role="presentation"><a role="menuitem" tabindex="-1" href="page-help.html"><span class="pull-right"><i class="fa fa-question-circle text-muted"></i></span>Help</a></li>
               <li class="divider"></li>
               <li role="presentation"><a role="menuitem" tabindex="-1" href="page-locked.html"><span class="pull-right"><i class="fa fa-lock text-muted"></i></span>Locked</a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-signin.html"><span class="pull-right"><i class="fa fa-sign-out text-muted"></i></span> Sign out</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="/auth/logout"><span class="pull-right"><i class="fa fa-sign-out text-muted"></i></span> Sign out</a></li>
             </ul>
           </div><!-- /.dropdown -->
-        </div><!-- /navigation -->
-
-        <div class="brand-search" id="brandSearchFrm">
-          <form action="#" role="search">
-            <a href="#" class="search-close">&times;</a>
-            <input class="search-field" placeholder="Search for everything you want..." tabindex="-1">
-          </form>
-        </div><!-- /.brand-search -->
-      </div><!-- /.container-fluid -->
-    </nav><!-- /navigation -->
+{% endblock %}          
 
 
-
-    <!-- ============================================
-    SIDEBAR SECTION
-    =============================================== -->
-    <aside class="sidebar" role="complementary">
-
-      <!-- profile -->
-      <div class="sidebar-block">
-        <div class="media">
-          <div class="media-left">
-            <a href="page-profile.html">
-              <span class="status dotted dotted-success" data-toggle="tooltip" data-container="body" title="available"></span>
-              <img class="media-object img-circle" src="/static/images/dummy/uifaces14.jpg" alt="photo profile">
-            </a>
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading">Emma Greene&nbsp;&nbsp;&nbsp;<a href="#"><span class="text-muted fa fa-angle-down"></span></a></h4>
-            <p class="text-muted">
-              <small>Graphic Designer</small>
-            </p>
-          </div>
-        </div>
-      </div><!-- /.sidebar-block -->
-      <!-- /profile -->
-
-      <!-- /navigation -->
-      <div class="nav-wrapper">
-        <ul class="nav nav-stacked" role="navigation">
-          <li class="nav-item" role="presentation">
-            <a href="#" data-toggle="nav-child">
-              <span class="nav-icon"><i class="fa fa-dashcube"></i></span>
-              <span class="nav-text">Dashboard</span>
-            </a>
-            <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="index.html"><span class="nav-text">Dashboard 1</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="index-2.html"><span class="nav-text">Dashboard 2</span></a></li>
-            </ul>
-          </li>
-
-          <li class="divider"></li>
-          <li class="nav-header" role="presentation">GET STARTED</li>
-          <li class="nav-item" role="presentation">
-            <a href="layout.html">
-              <span class="nav-icon"><i class="fa fa-object-group"></i></span>
-              <span class="nav-text">Layout</span>
-            </a>
-          </li>
-          <li class="nav-item" role="presentation">
-            <a href="ecosystem.html">
-              <span class="nav-icon"><i class="fa fa-cubes"></i></span>
-              <span class="nav-text">Ecosystem</span>
-            </a>
-          </li>
-          <li class="nav-item" role="presentation">
-            <a href="panels.html">
-              <span class="nav-icon"><i class="fa fa-puzzle-piece"></i></span>
-              <span class="nav-text">Panels</span>
-            </a>
-          </li>
-          <li class="nav-item" role="presentation">
-            <a href="#" data-toggle="nav-child">
-              <span class="nav-icon"><i class="fa fa-align-left"></i></span>
-              <span class="nav-text">Level Menu</span>
-            </a>
-            <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="nav-text">Lorem ipsum</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="nav-text">Dolor sit</span></a></li>
-              <li role="presentation">
-                <a role="menuitem" tabindex="-1" data-toggle="nav-child" href="#"><span class="nav-text">Node</span></a>
-                <ul class="nav nav-child level-2 nav-stacked nav-pills" role="menu">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="nav-text">Consectetur</span></a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="nav-text">Assumenda</span></a></li>
-                </ul>
-              </li> <!-- /node -->
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="nav-text">Amet</span></a></li>
-            </ul>
-          </li>
-
-          <li class="divider"></li>
-          <li class="nav-header" role="presentation">USER INTERFACES</li>
-          <li class="nav-item" role="presentation">
-            <a href="#" data-toggle="nav-child">
-              <span class="nav-icon"><i class="fa fa-briefcase"></i></span>
-              <span class="nav-text">Components</span>
-            </a>
-            <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-grid.html"><span class="nav-text">Grids</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-type.html"><span class="nav-text">Type</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-button.html"><span class="nav-text">Buttons</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-icons.html"><span class="nav-text">Icons</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-modal.html"><span class="nav-text">Modal</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-tooltip-popover.html"><span class="nav-text">Tooltips & Popovers</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-alert-callout.html"><span class="nav-text">Alerts & Callout</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-progressbar.html"><span class="nav-text">Progress bar</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-label-badge.html"><span class="nav-text">Label & Badge</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-navbar.html"><span class="nav-text">Navbar</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-nav.html"><span class="nav-text">Nav</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="component-tabs-collapse.html"><span class="nav-text">Tabs & Collapse</span></a></li>
-            </ul>
-          </li>
-          <li class="nav-item" role="presentation">
-            <a href="#" data-toggle="nav-child">
-              <span class="nav-icon"><i class="fa fa-check-square"></i></span>
-              <span class="nav-text">Forms</span>
-            </a>
-            <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="frm-basic.html"><span class="nav-text">Basic Elements</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="frm-advance.html"><span class="nav-text">Advance Elements</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="frm-uploader.html"><span class="nav-text">Uploader</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="frm-xeditable.html"><span class="nav-text">x-Editable</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="frm-wizard.html"><span class="nav-text">Wizard</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="frm-editor.html"><span class="nav-text">Editor</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="frm-imagecropping.html"><span class="nav-text">Image Cropping</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="frm-validator.html"><span class="nav-text">Validator</span></a></li>
-            </ul>
-          </li>
-          <li class="nav-item" role="presentation">
-            <a href="#" data-toggle="nav-child">
-              <span class="nav-icon"><i class="fa fa-line-chart"></i></span>
-              <span class="nav-text">Charts</span>
-            </a>
-            <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="chart-js.html"><span class="nav-text">ChartJs</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="chart-morris.html"><span class="nav-text">Morris</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="chart-inline.html"><span class="nav-text">Inline Charts</span></a></li>
-            </ul>
-          </li>
-          <li class="nav-item" role="presentation">
-            <a href="#" data-toggle="nav-child">
-              <span class="nav-icon"><i class="fa fa-database"></i></span>
-              <span class="nav-text">Tables</span>
-            </a>
-            <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="table-basic.html"><span class="nav-text">Basic Table</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="table-datatables.html"><span class="nav-text">DataTables</span></a></li>
-            </ul>
-          </li>
-
-          <li class="divider"></li>
-          <li class="nav-header" role="presentation">DEVELOPMENT</li>
-          <li class="nav-item" role="presentation">
-            <a href="ui-kits.html">
-              <span class="nav-icon"><i class="fa fa-cube"></i></span>
-              <span class="nav-text">Widgets</span>
-            </a>
-          </li>
-          <li class="nav-item" role="presentation">
-            <a href="#" data-toggle="nav-child">
-              <span class="nav-icon"><i class="fa fa-plug"></i></span>
-              <span class="nav-text">Plugins</span>
-            </a>
-            <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="plugin-animate.html"><span class="nav-text">Animated</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="plugin-bootbox.html"><span class="nav-text">Bootbox</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="plugin-calendar.html"><span class="nav-text">Calendar</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="plugin-maps.html"><span class="nav-text">Maps</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="plugin-nestable.html"><span class="nav-text">Nestable List</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="plugin-session-timeout.html"><span class="nav-text">Session Timeout</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="plugin-toastr.html"><span class="nav-text">Toastr</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="plugin-treeview.html"><span class="nav-text">Tree View</span></a></li>
-            </ul>
-          </li>
-          <li class="nav-item open active" role="presentation">
-            <a href="#" data-toggle="nav-child">
-              <span class="nav-icon"><i class="fa fa-file-text-o"></i></span>
-              <span class="nav-text">Pages</span>
-            </a>
-            <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-signin.html"><span class="nav-text">Signin</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-locked.html"><span class="nav-text">Lock Screen</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-error.html"><span class="nav-text">Error Page</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-profile.html"><span class="nav-text">Profile</span></a></li>
-              <li role="presentation" class="active"><a role="menuitem" tabindex="-1" href="page-inbox.html"><span class="nav-text">Inbox</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-timeline.html"><span class="nav-text">Timeline</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-gallery.html"><span class="nav-text">Gallery</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-pricing.html"><span class="nav-text">Pricing</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-invoice.html"><span class="nav-text">Invoice</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-search.html"><span class="nav-text">Search Result</span></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="page-help.html"><span class="nav-text">Help</span></a></li>
-            </ul>
-          </li>
-          <li class="collapse-item" role="presentation">
-            <a href="#" data-sidebar="toggleCollapse">
-              <i class="fa fa-angle-double-left"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </aside><!-- /.SIDEBAR -->
-
-
-
-    <!-- ============================================
-    MAIN CONTENT SECTION
-    =============================================== -->
-    <section class="content-wrapper" role="main">
+{% block content %}      
       <div class="content">
         <div class="content-hero">
           <img class="content-hero-embed" src="/static/images/dummy/people2.jpg" alt="cover">
@@ -1264,49 +1002,17 @@
         </div><!-- /.templateSetup -->
 
       </div><!-- /.content -->
-    </section><!-- /MAIN -->
+{% endblock %}
 
-
-
-    <!-- ============================================
-    FOOTER SECTION
-    =============================================== -->
-    <footer class="footer-wrapper" role="contentinfo">
-      <div class="footer">
-        <div class="pull-right text-muted"><small>Currently v1.1</small></div>
-        <div>Wrapkit Template  &copy; 2015</div>
-      </div>
-    </footer><!-- /.FOOTER -->
-
-  </main><!-- /#MAIN -->
-
-
-  <!-- VENDORS : jQuery & Bootstrap -->
-  <script src="/static/scripts/vendor.js"></script>
-  <!-- END VENDORS -->
-
-  <!-- DEPENDENCIES : Required plugins -->
-  <script src="/static/scripts/dependencies.js"></script>
-  <!-- END DEPENDENCIES -->
-
-  <!-- WRAPKIT -->
-  <script src="/static/scripts/wrapkit.js"></script>
-  <!-- END WRAPKIT -->
-
-  <!-- WRAPKIT SETUPS -->
-  <script src="/static/scripts/wrapkit-setup.js"></script>
-  <!-- end WRAPKIT SETUPS -->
-
-  <!-- PLUGIN SETUPS: vendors & dependencies setups -->
-  <script src="/static/scripts/plugin-setups.js"></script>
-  <!-- END PLUGIN SETUPS -->
-
+  {% block javascript %}
   <!-- COMPONENTS -->
   <script src="/static/scripts/toastr.js"></script>
   <!-- END COMPONENTS -->
 
   <!-- DUMMY: Use for demo -->
-  <script src="/static/scripts/demo/page-inbox-demo.js"></script>
+  <script src="/static/scripts/demo/page-inbox-demo.js"></script>  
+  {% endblock %}
+
 
 </body>
 </html>

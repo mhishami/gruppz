@@ -15,5 +15,8 @@
 handle_request(<<"GET">>, <<"index">>, _Args, _Params, _Req) ->    
     {render, <<"app">>, []};
 
+handle_request(<<"GET">>, <<"base">>, _Args, _Params, _Req) ->    
+    {render, <<"base">>, []};
+
 handle_request(_, _, _, _, _) ->
     {error, <<"Opps, Forbidden">>}.

@@ -13,7 +13,7 @@
 %       end.
 
 handle_request(<<"GET">>, <<"index">>, _Args, _Params, _Req) ->    
-    {render, <<"index">>, []};
+    {render, <<"home">>, []};
 
 handle_request(_, _, _, _, _) ->
     {error, <<"Opps, Forbidden">>}.

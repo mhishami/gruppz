@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html class="no-js">
 <head>
   <meta charset="utf-8">
@@ -32,6 +32,10 @@
   <link rel="stylesheet" href="/static/styles/dependencies.css">
 
   <link rel="stylesheet" href="/static/styles/wrapkit.css">
+
+  {% block header %}
+  {% endblock %}
+
 </head>
 <body>
   <!--[if lt IE 9]>
@@ -49,7 +53,7 @@
       <div class="container-fluid">
         <!-- use .pull-*, couse we need this float on any screen size -->
         <div class="pull-left">
-          <a class="navbar-brand" href="index.html" role="logo" aria-label="Logo">
+          <a class="navbar-brand" href="/" role="logo" aria-label="Logo">
             <img class="logo" src="/static/images/logo/brand-text-dark.png" alt="Brand">
           </a>
           <button data-sidebar="toggleVisible" class="btn btn-icon navbar-btn">
@@ -61,7 +65,9 @@
         <!-- use .pull-*, couse we need this float on any screen size -->
         <div class="pull-right" role="navigation">
           <a aria-label="Search" id="brandSearchNav" class="btn btn-icon navbar-btn" href="#"><i class="fa fa-search"></i></a>
-          <a aria-label="Signout" class="btn btn-icon navbar-btn" href="#"><i class="fa fa-sign-out"></i></a>
+          <a aria-label="Signout" class="btn btn-icon navbar-btn" href="/auth/logout"><i class="fa fa-sign-out"></i></a>
+          {% block barnav %}
+          {% endblock %}
         </div><!-- /navigation -->
 
         <div class="brand-search" id="brandSearchFrm">
@@ -101,9 +107,15 @@
       <div class="nav-wrapper">
         <ul class="nav nav-stacked" role="navigation">
           <li class="nav-item active" role="presentation">
-            <a href="layout.html">
-              <span class="nav-icon"><i class="fa fa-object-group"></i></span>
-              <span class="nav-text">Layout</span>
+            <a href="/app">
+              <span class="nav-icon"><i class="fa fa-envelope-o"></i></span>
+              <span class="nav-text">Email</span>
+            </a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a href="/app/base">
+              <span class="nav-icon"><i class="fa fa-cube"></i></span>
+              <span class="nav-text">Base</span>
             </a>
           </li>
         </ul>
@@ -116,10 +128,12 @@
     MAIN CONTENT SECTION
     =============================================== -->
     <section class="content-wrapper" role="main">
+      {% block content %}
+
       <div class="content">
         <div class="content-bar">
           <div class="pull-right" role="group">
-            <a data-toggle="modal" href="#" data-scripts="/static/includes/setup.js" data-target="#templateSetup" title="Template Setups" aria-label="template setups" class="btn btn-nofill btn-sm btn-default" href="#"><span class="icon-settings fa-lg text-muted"></span></a>
+            <a data-toggle="modal" href="#" data-scripts="/static/include/setup.js" data-target="#templateSetup" title="Template Setups" aria-label="template setups" class="btn btn-nofill btn-sm btn-default" href="#"><span class="icon-settings fa-lg text-muted"></span></a>
           </div>
           <ul class="breadcrumb breadcrumb-angle">
             <li><a href="#" aria-label="home"><i class="fa fa-home"></i></a></li>
@@ -141,6 +155,8 @@
         </div><!-- /.templateSetup -->
 
       </div><!-- /.content -->
+
+      {% endblock %}
     </section><!-- /MAIN -->
 
 
@@ -151,7 +167,7 @@
     <footer class="footer-wrapper" role="contentinfo">
       <div class="footer">
         <div class="pull-right text-muted"><small>Currently v1.1</small></div>
-        <div>Wrapkit Template  &copy; 2015</div>
+        <div>ZayMobile Technology &copy; 2015</div>
       </div>
     </footer><!-- /.FOOTER -->
 
@@ -167,7 +183,7 @@
   <!-- END DEPENDENCIES -->
 
   <!-- WRAPKIT -->
-  <script src="s/static/cripts/wrapkit.js"></script>
+  <script src="/static/scripts/wrapkit.js"></script>
   <!-- END WRAPKIT -->
 
   <!-- WRAPKIT SETUPS -->
@@ -177,6 +193,9 @@
   <!-- PLUGIN SETUPS: vendors & dependencies setups -->
   <script src="/static/scripts/plugin-setups.js"></script>
   <!-- END PLUGIN SETUPS -->
+
+  {% block javascript %}
+  {% endblock %}
 
 </body>
 </html>
