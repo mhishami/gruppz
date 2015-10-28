@@ -27,7 +27,7 @@ handle_request(<<"POST">>, <<"update_profile">>, _Args, Params, _Req) ->
     {ok, PostVals} = maps:find(<<"qs_body">>, Params),
     case form_util:not_empty(PostVals) of
         {error, Err} ->
-            {render, <<"user_settings">>, [
+            {render, <<"settings_profile">>, [
                 {user, form_util:get_user(Params)},
                 {error, Err} | PostVals
             ]};
@@ -52,7 +52,7 @@ handle_request(<<"POST">>, <<"change_passwd">>, _Args, Params, _Req) ->
     ?INFO("Changing password for user ~p~n", [Email]),
     case form_util:not_empty(PostVals) of
         {error, _Err} ->
-            {render, <<"user_settings">>, [
+            {render, <<"settings_passwd">>, [
                 {user, form_util:get_user(Params)},
                 {pass_error, <<"All passwords are required">>} | PostVals
             ]};
@@ -62,7 +62,7 @@ handle_request(<<"POST">>, <<"change_passwd">>, _Args, Params, _Req) ->
 
             case Pass1 =/= Pass2 of
                 true ->
-                    {render, <<"user_profile">>, [
+                    {render, <<"settings_passwd">>, [
                         {user, form_util:get_user(Params)},
                         {pass_error, <<"Passwords are not the same">>} | PostVals
                     ]};
