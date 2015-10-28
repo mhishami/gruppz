@@ -1,0 +1,13 @@
+{% extends "base.dtl" %}
+
+{% block sidebar %}
+    <li><a href="/settings/profile">Profile</a></li>
+    <li><a href="/settings/passwd">Password</a></li>
+    <li class="active"><a href="/settings/billing">Billing</a></li>
+    <li><a href="/settings/security">Security</a></li>
+{% endblock %}
+
+{% block content %}
+<h4>Billing Settings</h4>
+
+{% endblock %}

@@ -1,13 +1,15 @@
 {% extends "base.dtl" %}
 
 {% block sidebar %}
-    <li class="active"><a href="/user/profile">Profile</a></li>
-    <li><a href="/user/passwd">Change Password</a></li>
+    <li class="active"><a href="/settings/profile">Profile</a></li>
+    <li><a href="/settings/passwd">Password</a></li>
+    <li><a href="/settings/billing">Billing</a></li>
+    <li><a href="/settings/security">Security</a></li>
 {% endblock %}
 
 {% block content %}
 
-<form class="form-horizontal" role="form" method="post" action="/user/update_profile">
+<form class="form-horizontal" role="form" method="post" action="/settings/profile/update">
   <fieldset>
 
     <!-- Form Name -->

@@ -1,4 +1,4 @@
--module (user_controller).
+-module (settings_controller).
 -export ([handle_request/5]).
 -export ([before_filter/1]).
 
@@ -20,7 +20,13 @@ handle_request(<<"GET">>, <<"profile">>, _Args, Params, _Req) ->
 handle_request(<<"GET">>, <<"passwd">>, _Args, Params, _Req) ->    
     {render, <<"settings_passwd">>, [{user, form_util:get_user(Params)}]};
 
-handle_request(<<"POST">>, <<"update_profile">>, _Args, Params, _Req) ->
+handle_request(<<"GET">>, <<"billing">>, _Args, Params, _Req) ->    
+    {render, <<"settings_billing">>, [{user, form_util:get_user(Params)}]};
+
+handle_request(<<"GET">>, <<"security">>, _Args, Params, _Req) ->    
+    {render, <<"settings_security">>, [{user, form_util:get_user(Params)}]};
+
+handle_request(<<"POST">>, <<"profile">>, [<<"update">>], Params, _Req) ->
     {ok, Email} = maps:find(<<"auth">>, Params),
     ?INFO("Updating user profile for ~p~n", [Email]),
 
@@ -45,7 +51,7 @@ handle_request(<<"POST">>, <<"update_profile">>, _Args, Params, _Req) ->
             {redirect, <<"/app">>}
     end;
 
-handle_request(<<"POST">>, <<"change_passwd">>, _Args, Params, _Req) ->
+handle_request(<<"POST">>, <<"passwd">>, [<<"update">>], Params, _Req) ->
     {ok, Email} = maps:find(<<"auth">>, Params),
     {ok, PostVals} = maps:find(<<"qs_body">>, Params),
 
