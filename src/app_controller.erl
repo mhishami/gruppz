@@ -1,19 +1,21 @@
 -module (app_controller).
 -export ([handle_request/5]).
-% -export ([before_filter/1]).
+-export ([before_filter/1]).
 
-% before_filter(SessionId) ->
-%       %% do some checking
-%       Sid = session_worker:get_cookies(SessionId),
-%       case Sid of
-%           {error, undefined} ->
-%               {redirect, <<"/auth/login">>};
-%           _ ->
-%               {ok, proceed}
-%       end.
+-include ("gruppz.hrl").
 
-handle_request(<<"GET">>, <<"index">>, _Args, _Params, _Req) ->    
-    {render, <<"app">>, []};
+before_filter(SessionId) ->
+      %% do some checking
+      Sid = session_worker:get_cookies(SessionId),
+      case Sid of
+          {error, undefined} ->
+              {redirect, <<"/auth/login">>};
+          _ ->
+              {ok, proceed}
+      end.
+
+handle_request(<<"GET">>, <<"index">>, _Args, Params, _Req) ->    
+    {render, <<"app">>, [{user, form_util:get_user(Params)}]};
 
 handle_request(<<"GET">>, <<"base">>, _Args, _Params, _Req) ->    
     {render, <<"base">>, []};

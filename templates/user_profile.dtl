@@ -1,0 +1,93 @@
+{% extends "base.dtl" %}
+
+{% block sidebar %}
+{% endblock %}
+
+{% block content %}
+
+<form class="form-horizontal" role="form" method="post" action="/user/update_profile">
+  <fieldset>
+
+    <!-- Form Name -->
+    <legend>Profile</legend>
+
+    {% if error %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>Warning!</strong> {{ error }}.
+    </div>      
+    {% endif %}
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="fullname">Full Name</label>  
+      <div class="col-md-4">
+      <input id="fullname" name="fullname" type="text" placeholder="Your full name" class="form-control input-md" required="" value="{{ user.fullname }}">
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="email">Email</label>  
+      <div class="col-md-4">
+      <input id="email" name="email" type="text" placeholder="you@mail.com" class="form-control input-md" value="{{ user.email }}" readonly>
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="fullname">Mobile No</label>  
+      <div class="col-md-4">
+      <input id="mobile_no" name="mobile_no" type="text" placeholder="Your Mobile No" class="form-control input-md" required="" value="{{ mobile_no }}">
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for=""></label>
+      <div class="col-md-4">
+        <button id="" name="" class="btn btn-success">Update</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+<form class="form-horizontal" role="form" method="post" action="/user/change_passwd">
+
+    <!-- Form Name -->
+    <legend>Change Password</legend>
+
+    {% if pass_error %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>Warning!</strong> {{ pass_error }}.
+    </div>      
+    {% endif %}
+
+    <!-- Password input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="password">Password</label>
+      <div class="col-md-4">
+        <input id="password" name="password" type="password" placeholder="*********************" class="form-control input-md" required="">
+      </div>
+    </div>
+
+    <!-- Password input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="password2">Confirm Password</label>
+      <div class="col-md-4">
+        <input id="password2" name="password2" type="password" placeholder="*********************" class="form-control input-md" required="">
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for=""></label>
+      <div class="col-md-4">
+        <button id="" name="" class="btn btn-success">Change Password</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+{% endblock %}
