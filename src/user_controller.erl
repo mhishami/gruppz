@@ -15,7 +15,10 @@ before_filter(SessionId) ->
       end.
 
 handle_request(<<"GET">>, <<"profile">>, _Args, Params, _Req) ->    
-    {render, <<"user_profile">>, [{user, form_util:get_user(Params)}]};
+    {render, <<"settings_profile">>, [{user, form_util:get_user(Params)}]};
+
+handle_request(<<"GET">>, <<"passwd">>, _Args, Params, _Req) ->    
+    {render, <<"settings_passwd">>, [{user, form_util:get_user(Params)}]};
 
 handle_request(<<"POST">>, <<"update_profile">>, _Args, Params, _Req) ->
     {ok, Email} = maps:find(<<"auth">>, Params),
@@ -24,7 +27,7 @@ handle_request(<<"POST">>, <<"update_profile">>, _Args, Params, _Req) ->
     {ok, PostVals} = maps:find(<<"qs_body">>, Params),
     case form_util:not_empty(PostVals) of
         {error, Err} ->
-            {render, <<"user_profile">>, [
+            {render, <<"user_settings">>, [
                 {user, form_util:get_user(Params)},
                 {error, Err} | PostVals
             ]};
@@ -49,7 +52,7 @@ handle_request(<<"POST">>, <<"change_passwd">>, _Args, Params, _Req) ->
     ?INFO("Changing password for user ~p~n", [Email]),
     case form_util:not_empty(PostVals) of
         {error, _Err} ->
-            {render, <<"user_profile">>, [
+            {render, <<"user_settings">>, [
                 {user, form_util:get_user(Params)},
                 {pass_error, <<"All passwords are required">>} | PostVals
             ]};
