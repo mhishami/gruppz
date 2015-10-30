@@ -14,15 +14,15 @@
 %               {ok, proceed}
 %       end.
 
-handle_request(<<"GET">>, <<"login">> = Page, _Args, _Params, _Req) ->   
-    {render, Page, []};
+handle_request(<<"GET">>, <<"login">>, _Args, _Params, _Req) ->   
+    {render, <<"auth_login">>, []};
 
-handle_request(<<"POST">>, <<"login">> = Page, _Args, Params, _Req) ->
+handle_request(<<"POST">>, <<"login">>, _Args, Params, _Req) ->
     % PostVals= [{<<"email">>,<<"mhishami@gmail.com">>},{<<"password">>,<<"sa">>}] 
     {ok, PostVals} = maps:find(<<"qs_body">>, Params),
     case form_util:not_empty(PostVals) of
         {error, Err} ->
-            {render, Page, [{error, Err} | PostVals]};
+            {render, <<"auth_login">>, [{error, Err} | PostVals]};
         _ ->
             Email = proplists:get_value(<<"email">>, PostVals),
             Pass = proplists:get_value(<<"password">>, PostVals),
@@ -32,7 +32,7 @@ handle_request(<<"POST">>, <<"login">> = Page, _Args, Params, _Req) ->
             {ok, P2} = maps:find(<<"password">>, User),
             case P1 =/= P2 of
                 true ->
-                    {render, Page, [{error, <<"Invalid username, or password">>}]};
+                    {render, <<"auth_login">>, [{error, <<"Invalid username, or password">>}]};
                 _ ->
                     %% set cookies
                     {ok, Sid} = maps:find(<<"sid">>, Params),
@@ -42,9 +42,9 @@ handle_request(<<"POST">>, <<"login">> = Page, _Args, Params, _Req) ->
     end;
 
 handle_request(<<"GET">>, <<"signup">>, _Args, _Params, _Req) ->    
-    {render, <<"signup">>, []};
+    {render, <<"auth_signup">>, []};
 
-handle_request(<<"POST">>, <<"signup">> = Page, _Args, Params, _Req) ->
+handle_request(<<"POST">>, <<"signup">>, _Args, Params, _Req) ->
     ?INFO("Registering new user...~n", []),
     % auth_controller:27: Params = #{<<"auth">> => <<>>,<<"files">> => [],
     %  <<"qs_body">> => [
@@ -59,14 +59,15 @@ handle_request(<<"POST">>, <<"signup">> = Page, _Args, Params, _Req) ->
     case form_util:not_empty(PostVals) of
         {error, Err} ->
             ?DEBUG("Res= ~p~n", [{error, Err} | PostVals]),
-            {render, Page, [{error, Err} | PostVals]};
+            {render, <<"auth_signup">>, [{error, Err} | PostVals]};
         _ ->
             Pass1 = proplists:get_value(<<"password">>, PostVals),
             Pass2 = proplists:get_value(<<"password2">>, PostVals),
             case Pass2 =/= Pass1 of
                 true ->
                     %% wrong password
-                    {render, Page, [{error, <<"Passwords are not the same">>} | PostVals]};
+                    {render, <<"auth_signup">>, [
+                        {error, <<"Passwords are not the same">>} | PostVals]};
                 false ->
                     User = #{
                         <<"_id">> => uuid:gen(),
@@ -81,6 +82,17 @@ handle_request(<<"POST">>, <<"signup">> = Page, _Args, Params, _Req) ->
                     {redirect, <<"/auth/login">>}
             end
     end;
+
+handle_request(<<"GET">>, <<"forgot">>, _Args, _Params, _Req) ->
+    {render, <<"auth_forgot">>, []};
+
+handle_request(<<"GET">>, <<"lock">>, _Args, _Params, _Req) ->
+    {render, <<"auth_lock">>, []};
+
+handle_request(<<"POST">>, <<"lock">>, _Args, _Params, _Req) ->
+    %% compare pasword
+
+    {redirect, <<"/app">>};    
 
 handle_request(<<"GET">>, <<"logout">>, _Args, Params, _Req) ->    
     {ok, Sid} = maps:find(<<"sid">>, Params),

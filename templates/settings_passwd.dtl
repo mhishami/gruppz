@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-<form class="form-horizontal" role="form" method="post" action="/setting/passwd/update">
+<form class="form-horizontal" role="form" method="post" action="/settings/passwd/update">
 
     <!-- Form Name -->
     <legend>Change Password</legend>

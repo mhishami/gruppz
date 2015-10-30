@@ -1,142 +1,276 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html class="no-js css-menubar" lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <meta name="description" content="bootstrap admin template">
+  <meta name="author" content="">
 
-    <title>Gruppz - Collaborate</title>
+  <title>Gruppz | {% block title %}{% endblock %}</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css">
+  <link rel="apple-touch-icon" href="/static/assets/images/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/static/assets/images/favicon.ico">
 
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="/static/css/sb-admin.css" rel="stylesheet" type="text/css">
-    <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/assets/css/bootstrap-extend.min.css">
+  <link rel="stylesheet" href="/static/assets/css/site.min.css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <!-- Plugins -->
+  <link rel="stylesheet" href="/static/assets/vendor/animsition/animsition.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/asscrollable/asScrollable.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/switchery/switchery.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/intro-js/introjs.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/slidepanel/slidePanel.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/flag-icon-css/flag-icon.min.css">
+
+  <!-- Plugins For This Page -->
+  {% block styles %}
+  <link rel="stylesheet" href="/static/assets/vendor/x-editable/x-editable.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/x-editable/address.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/typeahead-js/typeahead.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/select2/select2.min.css">
+  {% endblock %}
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="/static/assets/fonts/web-icons/web-icons.min.css">
+  <link rel="stylesheet" href="/static/assets/fonts/brand-icons/brand-icons.min.css">
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+
+
+  <!--[if lt IE 9]>
+    <script src="/static/assets/vendor/html5shiv/html5shiv.min.js"></script>
     <![endif]-->
 
-    {% block css %}
-    {% endblock %}
+  <!--[if lt IE 10]>
+    <script src="/static/assets/vendor/media-match/media.match.min.js"></script>
+    <script src="/static/assets/vendor/respond/respond.min.js"></script>
+    <![endif]-->
 
-    <link href="/static/css/gruppz.css" rel="stylesheet" type="text/css">
-
+  <!-- Scripts -->
+  <script src="/static/assets/vendor/modernizr/modernizr.min.js"></script>
+  <script src="/static/assets/vendor/breakpoints/breakpoints.min.js"></script>
+  <script>
+    Breakpoints();
+  </script>
 </head>
-
 <body>
+  <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
-    <div id="wrapper">
+  <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand logo" href="/app">Gruppz</a>
-            </div>
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                {% if user %}
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ user.fullname }} <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="/settings/profile"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="/auth/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </li>
-                {% else %}
-                <li><a href="/auth/signup"><i class="fa fa-fw fa-gear"></i>Sign Up</li></a>
-                <li><a href="/auth/login"><i class="fa fa-fw fa-user"></i>Log In</li></a>
-                {% endif %} <!-- if user -->
-            </ul>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul id="sidebar" class="nav navbar-nav side-nav">
-                    {% block sidebar %}
-                    <li>
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
-                    </li>
-                    <li>
-                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="active">
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
-                    </li>
-                    {% endblock %} <!-- sidebar -->
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </nav>
-
-        <div id="page-wrapper">
-
-            <div class="container-fluid">
-                {% block content %}
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            Blank Page
-                            <small>Subheading</small>
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-                            </li>
-                            <li class="active">
-                                <i class="fa fa-file"></i> Blank Page
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-                {% endblock %} <!-- content --> 
-                <!-- /.row -->
-
-            </div>
-            <!-- /.container-fluid -->
-
-        </div>
-        <!-- /#page-wrapper -->
-
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle hamburger hamburger-close navbar-toggle-left hided"
+      data-toggle="menubar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="hamburger-bar"></span>
+      </button>
+      <button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-collapse"
+      data-toggle="collapse">
+        <i class="icon wb-more-horizontal" aria-hidden="true"></i>
+      </button>
+      <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
+        <img class="navbar-brand-logo" src="/static/logo.png" title="Remark">
+        <span class="navbar-brand-text"> Gruppz</span>
+      </div>
+      <button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-search"
+      data-toggle="collapse">
+        <span class="sr-only">Toggle Search</span>
+        <i class="icon wb-search" aria-hidden="true"></i>
+      </button>
     </div>
-    <!-- /#wrapper -->
 
-    <script src="/static/js/jquery.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-    {% block js %}
-    {% endblock %}
-    
+    <div class="navbar-container container-fluid">
+      <!-- Navbar Collapse -->
+      <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
+        <!-- Navbar Toolbar -->
+        <ul class="nav navbar-toolbar">
+          <li class="hidden-float" id="toggleMenubar">
+            <a data-toggle="menubar" href="#" role="button">
+              <i class="icon hamburger hamburger-arrow-left">
+                  <span class="sr-only">Toggle menubar</span>
+                  <span class="hamburger-bar"></span>
+                </i>
+            </a>
+          </li>
+          <li class="hidden-xs" id="toggleFullscreen">
+            <a class="icon icon-fullscreen" data-toggle="fullscreen" href="#" role="button">
+              <span class="sr-only">Toggle fullscreen</span>
+            </a>
+          </li>
+          <li class="hidden-float">
+            <a class="icon wb-search" data-toggle="collapse" href="#" data-target="#site-navbar-search"
+            role="button">
+              <span class="sr-only">Toggle Search</span>
+            </a>
+          </li>
+        </ul>
+        <!-- End Navbar Toolbar -->
+
+        <!-- Navbar Toolbar Right -->
+        <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
+          <li class="dropdown">
+            <a class="navbar-avatar dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false"
+            data-animation="scale-up" role="button">
+              <span class="avatar avatar-online">
+                <img src="/static/assets/portraits/5.jpg" alt="...">
+                <i></i>
+              </span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li role="presentation">
+                <a href="/settings/profile" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Settings</a>
+              </li>
+              <li class="divider" role="presentation"></li>
+              <li role="presentation">
+                <a href="/auth/logout" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <!-- End Navbar Toolbar Right -->
+      </div>
+      <!-- End Navbar Collapse -->
+
+      <!-- Site Navbar Seach -->
+      <div class="collapse navbar-search-overlap" id="site-navbar-search">
+        <form role="search">
+          <div class="form-group">
+            <div class="input-search">
+              <i class="input-search-icon wb-search" aria-hidden="true"></i>
+              <input type="text" class="form-control" name="site-search" placeholder="Search...">
+              <button type="button" class="input-search-close icon wb-close" data-target="#site-navbar-search"
+              data-toggle="collapse" aria-label="Close"></button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- End Site Navbar Seach -->
+    </div>
+  </nav>
+  <div class="site-menubar">
+    <div class="site-menubar-body">
+      <div>
+        <div>
+          <ul class="site-menu">
+            <li class="site-menu-category">General</li>
+            <li class="site-menu-item has-sub">
+              <a href="javascript:void(0)">
+                <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
+                <span class="site-menu-title">Dashboard</span>
+                <div class="site-menu-badge">
+                  <span class="badge badge-success">2</span>
+                </div>
+              </a>
+              <ul class="site-menu-sub">
+                <li class="site-menu-item">
+                  <a class="animsition-link" href="../index.html">
+                    <span class="site-menu-title">Dashboard v1</span>
+                  </a>
+                </li>
+                <li class="site-menu-item">
+                  <a class="animsition-link" href="../dashboard/v2.html">
+                    <span class="site-menu-title">Dashboard v2</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="site-menubar-section">
+            <h5>
+              Milestone
+              <span class="pull-right">30%</span>
+            </h5>
+            <div class="progress progress-xs">
+              <div class="progress-bar active" style="width: 30%;" role="progressbar"></div>
+            </div>
+            <h5>
+              Release
+              <span class="pull-right">60%</span>
+            </h5>
+            <div class="progress progress-xs">
+              <div class="progress-bar progress-bar-warning" style="width: 60%;" role="progressbar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-menubar-footer">
+      <a href="/settings/profile" class="fold-show" data-placement="top" data-toggle="tooltip"
+      data-original-title="Settings">
+        <span class="icon wb-settings" aria-hidden="true"></span>
+      </a>
+      <a href="/auth/lock" data-placement="top" data-toggle="tooltip" data-original-title="Lock">
+        <span class="icon wb-eye-close" aria-hidden="true"></span>
+      </a>
+      <a href="/auth/logout" data-placement="top" data-toggle="tooltip" data-original-title="Logout">
+        <span class="icon wb-power" aria-hidden="true"></span>
+      </a>
+    </div>
+  
+  </div>
+
+  <!-- Page -->
+  {% block content %}
+  {% endblock %}
+  <!-- End Page -->
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="site-footer-legal">© 2015 <a href="http://www.zaymobiletech.com">ZayMobile Technology Sdn Bhd</a></div>
+  </footer>
+
+  <!-- Core  -->
+  <script src="/static/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/assets/vendor/bootstrap/bootstrap.min.js"></script>
+  <script src="/static/assets/vendor/animsition/jquery.animsition.min.js"></script>
+  <script src="/static/assets/vendor/asscroll/jquery-asScroll.min.js"></script>
+  <script src="/static/assets/vendor/mousewheel/jquery.mousewheel.min.js"></script>
+  <script src="/static/assets/vendor/asscrollable/jquery.asScrollable.all.min.js"></script>
+  <script src="/static/assets/vendor/ashoverscroll/jquery-asHoverScroll.min.js"></script>
+
+  <!-- Plugins -->
+  <script src="/static/assets/vendor/switchery/switchery.min.js"></script>
+  <script src="/static/assets/vendor/intro-js/intro.min.js"></script>
+  <script src="/static/assets/vendor/screenfull/screenfull.js"></script>
+  <script src="/static/assets/vendor/slidepanel/jquery-slidePanel.min.js"></script>
+
+  <!-- Plugins For This Page -->
+  {% block js %}
+  <script src="/static/assets/vendor/x-editable/bootstrap-editable.min.js"></script>
+  <script src="/static/assets/vendor/typeahead-js/bloodhound.min.js"></script>
+  <script src="/static/assets/vendor/typeahead-js/typeahead.jquery.min.js"></script>
+  <script src="/static/assets/vendor/x-editable/address.js"></script>
+  <script src="/static/assets/vendor/select2/select2.min.js"></script>
+  <script src="/static/assets/vendor/moment/moment.min.js"></script>
+  {% endblock %}
+
+  <!-- Scripts -->
+  <script src="/static/assets/js/core.min.js"></script>
+  <script src="/static/assets/js/site.min.js"></script>
+
+  <script src="/static/assets/js/sections/menu.min.js"></script>
+  <script src="/static/assets/js/sections/menubar.min.js"></script>
+  <script src="/static/assets/js/sections/gridmenu.min.js"></script>
+  <script src="/static/assets/js/sections/sidebar.min.js"></script>
+
+  <script src="/static/assets/js/configs/config-colors.min.js"></script>
+  <script src="/static/assets/js/configs/config-tour.min.js"></script>
+
+  <script src="/static/assets/js/components/asscrollable.min.js"></script>
+  <script src="/static/assets/js/components/animsition.min.js"></script>
+  <script src="/static/assets/js/components/slidepanel.min.js"></script>
+  <script src="/static/assets/js/components/switchery.min.js"></script>
+
+  {% block xjs %}
+  <script src="/static/assets/examples/js/forms/editable.js"></script>
+  {% endblock %}
+  
 </body>
 
 </html>

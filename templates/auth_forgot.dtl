@@ -1,0 +1,17 @@
+{% extends "auth_login.dtl" %}
+      
+      {% block content %}
+      <h2>Forgot Your Password ?</h2>
+      <p>Input your registered email to reset your password</p>
+
+      <form method="post" role="form" method="post" action="/auth/forgot">
+        <div class="form-group form-material floating">
+          <input type="email" class="form-control" id="inputEmail" name="email">
+          <label class="floating-label">Your Email</label>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">Reset Your Password</button>
+        </div>
+      </form>
+      <p>Have account already? Please go to <a href="/auth/login">Sign In</a></p>
+      {% endblock %}

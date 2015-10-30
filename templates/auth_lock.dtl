@@ -1,0 +1,23 @@
+{% extends "auth_login.dtl" %}
+
+{% block styles %}
+<link rel="stylesheet" href="/static/assets/examples/css/pages/lockscreen.css">
+{% endblock %}
+
+{% block body %}
+<body class="page-locked layout-full page-dark">
+{% endblock %}
+
+{% block content %}
+      <form method="post" role="form">
+        <div class="input-group">
+          <input type="password" class="form-control last" id="inputPassword" name="password"
+          placeholder="Enter password">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary"><i class="icon wb-unlock" aria-hidden="true"></i>
+              <span class="sr-only">unLock</span>
+            </button>
+          </span>
+        </div>
+      </form>
+{% endblock %}
