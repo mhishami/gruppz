@@ -38,6 +38,8 @@
   <link rel="stylesheet" href="/static/assets/fonts/brand-icons/brand-icons.min.css">
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
 
+  <!-- skins -->
+  <!-- <link rel="stylesheet" href="/static/assets/skins/orange.css"> -->
 
   <!--[if lt IE 9]>
     <script src="/static/assets/vendor/html5shiv/html5shiv.min.js"></script>
@@ -270,6 +272,19 @@
   {% block xjs %}
   <script src="/static/assets/examples/js/forms/editable.js"></script>
   {% endblock %}
+
+  <script>
+    (function(document, window, $) {
+      'use strict';
+
+      var Site = window.Site;
+      $(document).ready(function() {
+        Site.run();
+      });
+    })(document, window, jQuery);
+  </script>
+
+
   
 </body>
 
