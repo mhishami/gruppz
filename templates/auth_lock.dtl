@@ -1,11 +1,11 @@
 {% extends "auth_login.dtl" %}
 
 {% block styles %}
-<link rel="stylesheet" href="/static/assets/examples/css/pages/lockscreen.css">
+  <link rel="stylesheet" href="/static/assets/examples/css/pages/lockscreen.css">
 {% endblock %}
 
 {% block body %}
-<body class="page-locked layout-full page-dark">
+<body class="page-locked layout-full ">
 {% endblock %}
 
 {% block content %}
