@@ -1,0 +1,96 @@
+{% extends "group_forum.dtl" %}
+
+{% block forum_content %}
+
+    <div class="page-content container-fluid">
+      <div class="row">
+
+        <div class="col-xlg-4 col-md-6">
+          <div class="panel panel-bordered">
+            <div class="panel-heading">
+              <h3 class="panel-title">Categories</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-hover text-middle">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Category</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for t in group.categories %}
+                  <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ t }}</td>
+                    <td>
+                      <form method="post" action="/group/category/{{ group._id }}/del">
+                        <input type="hidden" name="category" value="{{ t }}">
+                        <button type="submit" class="btn btn-pure btn-default icon fa-trash"></button>
+                      </form>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <div class="form-group">
+                <form method="post" action="/group/category/{{ group._id }}/add">
+                  <div class="input-group">
+                    <input type="text" class="form-control" name="category" placeholder="New Category...">
+                    <span class="input-group-btn">
+                      <button type="submit" class="btn btn-default btn-primary"> Add </button>
+                    </span>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xlg-4 col-md-6">
+          <div class="panel panel-bordered">
+            <div class="panel-heading">
+              <h3 class="panel-title">Tags</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-hover text-middle">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Tag</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for t in group.tags %}
+                  <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ t }}</td>
+                    <td>
+                      <form method="post" action="/group/tag/{{ group._id }}/del">
+                        <input type="hidden" name="tag" value="{{ t }}">
+                        <button type="submit" class="btn btn-pure btn-default icon fa-trash"></button>
+                      </form>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <div class="form-group">
+                <form method="post" action="/group/tag/{{ group._id }}/add">
+                  <div class="input-group">
+                    <input type="text" class="form-control" name="tag" placeholder="New Tag...">
+                    <span class="input-group-btn">
+                      <button type="submit" class="btn btn-default btn-primary"> Add </button>
+                    </span>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

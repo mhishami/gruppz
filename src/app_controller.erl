@@ -5,20 +5,30 @@
 -include ("gruppz.hrl").
 
 before_filter(SessionId) ->
-      %% do some checking
-      Sid = session_worker:get_cookies(SessionId),
-      case Sid of
-          {error, undefined} ->
-              {redirect, <<"/auth/login">>};
-          _ ->
-              {ok, proceed}
-      end.
+  %% do some checking
+  Sid = session_worker:get_cookies(SessionId),
+  case Sid of
+    {error, undefined} ->
+      {redirect, <<"/auth/login">>};
+    _ ->
+      {ok, proceed}
+  end.
 
-handle_request(<<"GET">>, <<"index">>, _Args, Params, _Req) ->    
-    {render, <<"app">>, [{user, form_util:get_user(Params)}]};
+handle_request(<<"GET">>, <<"index">>, _Args, Params, _Req) ->
+  %% check if our user has any board subscribed to
+  User = form_util:get_user(Params),
+  {ok, PubGroups} = mongo_worker:find(?DB_GROUPS, {}),
+
+  {render, <<"app">>, [
+    {user, User},
+    {pubgroups, PubGroups}
+  ]};
 
 handle_request(<<"GET">>, <<"base">>, _Args, _Params, _Req) ->    
-    {render, <<"base">>, []};
+  {render, <<"base">>, []};
 
-handle_request(_, _, _, _, _) ->
-    {error, <<"Opps, Forbidden">>}.
+%% ----------------------------------------------------------------------------
+%% catch all
+%%
+handle_request(Method, Action, Args, _, _) ->
+  {error, [{method, Method}, {action, Action}, {args, Args}]}.

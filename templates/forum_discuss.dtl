@@ -1,0 +1,76 @@
+{% extends "group_forum.dtl" %}
+
+{% block forum_content %}
+
+      <div class="page-content tab-content page-content-table nav-tabs-animate">
+        <div class="tab-pane animation-fade active" id="forum-newest" role="tabpanel">
+
+          {% if posts %}
+          <table class="table is-indent">
+            <tbody>
+              {% for p in posts %}
+              <tr data-url="panel.tpl" data-toggle="slidePanel">
+                <td class="pre-cell"></td>
+                <td class="cell-60 responsive-hide">
+                  <a class="avatar" href="javascript:void(0)">
+                    <img class="img-responsive" src="/static/assets/portraits/{{ p.author._id }}.jpg"
+                    alt="...">
+                  </a>
+                </td>
+                <td>
+                  <div class="content">
+                    <div class="title">
+                      {{ p.title }}
+                      <div class="flags responsive-hide">
+                        <span class="sticky-top label label-round label-danger"><i class="icon wb-dropup" aria-hidden="true"></i>TOP</span>
+                        <i class="locked icon wb-lock" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                    <div class="metas">
+                      <span class="author">By {{ p.author }}</span>
+                      <span class="started">{{ p.date | date:"F j, Y" }}</span>
+                      {% for t in p.tags %}
+                      <span class="tags">{{ t }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-80 forum-posts">
+                  <span class="num">1</span>
+                  <span class="unit">Post</span>
+                </td>
+                <td class="suf-cell"></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+          {% else %}
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Discussion Message</h3>
+                  <div class="panel-actions"></div>
+                </div>
+                <div class="panel-body">
+                  <div role="alert" class="alert dark alert-success alert-dismissible">
+                    <button aria-label="Close" data-dismiss="alert" class="close" type="button">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <h4>Opps!</h4>
+                    <p>
+                      No message is being created yet!<br>
+                      Create one by posting a new message.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+{% endblock %}

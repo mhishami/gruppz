@@ -1,0 +1,22 @@
+{% extends "base.dtl" %}
+
+{% block styles %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition" data-animsition-in="fade-in" data-animsition-out="fade-out">
+    <div class="page-content container-fluid">
+      <div class="row">
+
+      </div>
+    </div>
+  </div>
+        
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+{% block xjs %}
+{% endblock %}

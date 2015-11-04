@@ -72,6 +72,16 @@
             <h2 class="brand-text font-size-18">Gruppz</h2>
           </div>
           {% block content %}
+
+          {% if error %}
+          <div class="alert dark alert-icon alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <i class="icon wb-alert bold" aria-hidden="true"></i><b>{{ error }}</b>
+          </div>
+          {% endif %}
+
           <form method="post" action="/auth/login">
             <div class="form-group form-material floating">
               <input type="email" class="form-control" name="email" />

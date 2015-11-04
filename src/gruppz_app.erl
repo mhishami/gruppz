@@ -5,7 +5,7 @@
 -export([stop/1]).
 
 start(_Type, _Args) ->
-	gruppz_sup:start_link().
+  gruppz_sup:start_link().
 
 stop(_State) ->
-	ok.
+  ok.

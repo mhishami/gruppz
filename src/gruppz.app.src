@@ -1,26 +1,40 @@
 {application, gruppz, [
-    {description, ""},
-    {vsn, "0.1"},
-    {modules, []},
-    {registered, [gruppz_sup]},
-    {applications, [kernel,
-                    stdlib,
-                    crypto,
-                    sasl,
-                    mnesia,
-                    tuah,
-                    cowboy,
-                    erlydtl,
-                    jsx,
-                    lager,
-                    cowlib,
-                    ranch,
-                    bson,
-                    mongodb,
-                    sync,
-                    goldrush,
-                    pbkdf2,
-                    eunit_formatters
-    ]},
-    {mod, {gruppz_app, []}}
+  {description, ""},
+  {vsn, "0.1"},
+  {modules, []},
+  {registered, [gruppz_sup]},
+  {applications, [kernel,
+                  stdlib,
+                  crypto,
+                  sasl,
+                  mnesia,
+                  tuah,
+                  cowboy,
+                  erlydtl,
+                  jsx,
+                  lager,
+                  cowlib,
+                  ranch,
+                  poolboy,
+                  bson,
+                  mongodb,
+                  sync,
+                  goldrush,
+                  pbkdf2,
+                  eunit_formatters
+  ]},
+  {mod, {gruppz_app, []}},
+  {env, [
+    {http, [{port, 8080}]},
+    {pools, [
+      {gruppz, [
+        {size, 10}, 
+        {max_overflow, 30}
+      ], [
+        {database, <<"gruppz">>},
+        {w_mode, safe}
+      ]}
+    ]}
+  ]}
 ]}.
+

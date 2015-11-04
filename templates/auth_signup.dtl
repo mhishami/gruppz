@@ -1,13 +1,23 @@
 {% extends "auth_login.dtl" %}          
 
           {% block content %}
+
+          {% if error %}
+          <div class="alert dark alert-icon alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <i class="icon wb-alert bold" aria-hidden="true"></i><b>{{ error }}</b>
+          </div>
+          {% endif %}
+          
           <form method="post" action="/auth/signup">
             <div class="form-group form-material floating">
-              <input type="text" class="form-control" name="name" />
+              <input type="text" class="form-control" name="fullname" value="{{ fullname }}"/>
               <label class="floating-label">Full Name</label>
             </div>
             <div class="form-group form-material floating">
-              <input type="email" class="form-control" name="email" />
+              <input type="email" class="form-control" name="email" value="{{ email }}"/>
               <label class="floating-label">Email</label>
             </div>
             <div class="form-group form-material floating">
@@ -15,7 +25,7 @@
               <label class="floating-label">Password</label>
             </div>
             <div class="form-group form-material floating">
-              <input type="password" class="form-control" name="PasswordCheck" />
+              <input type="password" class="form-control" name="password2" />
               <label class="floating-label">Re-enter Password</label>
             </div>
 

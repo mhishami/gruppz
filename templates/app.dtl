@@ -1,7 +1,76 @@
 {% extends "base.dtl" %}
 
-{% block sidebar %}
+{% block styles %}
 {% endblock %}
 
 {% block content %}
+  <div class="page animsition" data-animsition-in="fade-in" data-animsition-out="fade-out">
+    <div class="page-content container-fluid">
+      <div class="row">
+
+
+        <div class="col-sm-4">
+          <div class="panel panel-bordered panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Info</h3>
+            </div>
+            <div class="panel-body">
+              {% if user.groups %}
+              <p>Groups you subscribed to:</p>
+              <ul>
+                {% for s in user.groups %}
+                <li>{{ s.name }}</li>
+                {% endfor %}
+              </ul>
+              {% else %}
+              <p>You have not subscribed to any group yet.</p><br>
+              {% endif %}
+              <p class="btn btn-block btn-primary">Select Group >></p>
+              <a href="/group/new" class="btn btn-block btn-warning">Make New Group</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-8">
+          <div class="panel panel-bordered panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">All Groups</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Group Name</th>
+                    <th>Description</th>
+                    <th>Members</th>
+                    <th>Last Activity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for p in pubgroups %}
+                  <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ p.name }}</td>
+                    <td>{{ p.description }}</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+        
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+{% block xjs %}
 {% endblock %}

@@ -1,0 +1,62 @@
+{% extends "auth_login.dtl" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="/static/assets/examples/css/pages/errors.css">
+{% endblock %}
+
+{% block body %}
+<body class="page-error page-error-505 layout-full">
+{% endblock %}
+
+{% block content %}
+  <div class="page animsition vertical-align text-center" data-animsition-in="fade-in"
+  data-animsition-out="fade-out">
+    <div class="page-content vertical-align-middle">
+      <header>
+        <h1 class="animation-slide-top">500</h1>
+        {% if error.method %}
+        <h2>Opps! Error in handling the request</h2>
+
+        <table class="table table-hover" style="text-align: left;">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Method</td>
+              <td>{{ error.method }}</td>
+            </tr>
+            
+            <tr>
+              <td>2</td>
+              <td>Action</td>
+              <td>{{ error.action }}</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Args</td>
+              <td>
+                <ol>
+                {% for a in error.args %}
+                  <li>{{ a }}</li>
+                {% endfor %}
+                </ol>
+              </td>
+            </tr>            
+          </tbody>
+        </table>
+        {% else %}
+        <h2>Opps!</h2>
+        <h4>{{ error }}</h4>
+        {% endif %}
+      </header>
+      <p class="error-advise">Please lodge a report to Admin if you think this is an error</p>
+      <a class="btn btn-primary btn-round" href="/">GO TO HOME</a>
+    </div>
+  </div>
+{% endblock %}

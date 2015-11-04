@@ -15,7 +15,10 @@
 %       end.
 
 handle_request(<<"GET">>, <<"index">>, _Args, _Params, _Req) ->    
-    {redirect, <<"/app">>};
+  {redirect, <<"/app">>};
 
-handle_request(_, _, _, _, _) ->
-    {error, <<"Opps, Forbidden">>}.
+%% ----------------------------------------------------------------------------
+%% catch all
+%%
+handle_request(Method, Action, Args, _, _) ->
+  {error, [{method, Method}, {action, Action}, {args, Args}]}.

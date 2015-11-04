@@ -1,0 +1,40 @@
+{% extends "group_forum.dtl" %}
+
+{% block forum_content %}
+
+      <div class="page-content tab-content page-content-table nav-tabs-animate">
+        <div class="tab-pane animation-fade active" id="forum-newest" role="tabpanel">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel">
+                <div class="panel-heading">
+                  <h3 class="panel-title">News</h3>
+                  <div class="panel-actions"></div>
+                </div>
+                <div class="panel-body">
+
+                {% if news %}
+                  {{ news.message }}
+                {% else %}
+
+                  <div role="alert" class="alert dark alert-success alert-dismissible">
+                    <button aria-label="Close" data-dismiss="alert" class="close" type="button">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <h4>Opps!</h4>
+                    <p>
+                      No news created yet!<br>
+                      Create one by posting a new message, and select "News" in the category.
+                    </p>
+                  </div>
+
+                {% endif %}
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}
