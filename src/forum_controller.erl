@@ -42,10 +42,12 @@ handle_request(<<"GET">>, <<"settings">>, [GroupId], Params, _Req) ->
   %% check if our user has any board subscribed to
   User = form_util:get_user(Params),
   {ok, Group} = mongo_worker:find_one(?DB_GROUPS, {<<"_id">>, GroupId}),
+  {ok, Tags} = mongo_worker:match(?DB_TAGS, {<<"grpid">>, GroupId}, {<<"name">>, 1}),
 
   {render, <<"forum_settings">>, [
     {user, User},
-    {group, Group}
+    {group, Group},
+    {tags, Tags}
   ]};
 
 handle_request(<<"GET">>, <<"category">>, [GroupId, Category], Params, _Req) ->

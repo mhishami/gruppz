@@ -158,7 +158,8 @@
       <div>
         <div>
           <ul class="site-menu">
-            <li class="site-menu-item">
+            <li class="site-menu-category">General</li>
+            <li class="site-menu-item has-sub">
               <a href="/app">
                 <i class="site-menu-icon wb-home" aria-hidden="true"></i>
                 <span class="site-menu-title">Home</span>

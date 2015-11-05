@@ -24,8 +24,12 @@ handle_request(<<"GET">>, <<"index">>, _Args, Params, _Req) ->
     {pubgroups, PubGroups}
   ]};
 
-handle_request(<<"GET">>, <<"base">>, _Args, _Params, _Req) ->    
-  {render, <<"base">>, []};
+handle_request(<<"GET">>, <<"forum">>, [], Params, _Req) ->
+  {ok, Group} = mongo_worker:find_one(?DB_GROUPS, {}),
+  {render, <<"group_forum">>, [
+    {user, form_util:get_user(Params)},
+    {group, Group}
+  ]};
 
 %% ----------------------------------------------------------------------------
 %% catch all

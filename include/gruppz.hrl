@@ -10,3 +10,4 @@
 -define (DB_GROUPS, <<"groups">>).
 -define (DB_POSTS, <<"posts">>).
 -define (DB_NEWS, <<"news">>).
+-define (DB_TAGS, <<"tags">>).

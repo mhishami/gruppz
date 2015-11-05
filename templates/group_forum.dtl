@@ -1,16 +1,5 @@
 {% extends "base.dtl" %}
 
-{% block styles %}
-  <link rel="stylesheet" href="/static/assets/vendor/select2/select2.min.css">
-  <link rel="stylesheet" href="/static/assets/vendor/bootstrap-markdown/bootstrap-markdown.min.css">
-  <link rel="stylesheet" href="/static/assets/vendor/bootstrap-select/bootstrap-select.min.css">
-
-  <!-- Page -->
-  <link rel="stylesheet" href="/static/assets/examples/css/apps/forum.css">
-  <link rel="stylesheet" href="/static/assets/examples/css/forms/advanced.css">
-  <link rel="stylesheet" href="/static/assets/fonts/font-awesome/font-awesome.css">
-{% endblock %}
-
 {% block content %}
 
   <div class="page bg-white animsition">
@@ -867,17 +856,17 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
-          <h4 class="modal-title">Create New Topic</h4>
+          <h4 class="modal-title">Create New Post</h4>
         </div>
         <div class="modal-body container-fluid">
-          <form>
+          <form method="post" action="/post/article">
             <div class="form-group">
-              <label class="control-label margin-bottom-15" for="topicTitle">Topic Title:</label>
-              <input type="text" class="form-control" id="topicTitle" name="title" placeholder="How To..."
+              <label class="control-label margin-bottom-15" for="topicTitle">Title:</label>
+              <input type="text" class="form-control" id="topicTitle" name="title" placeholder="How To..." value=""
               />
             </div>
             <div class="form-group">
-              <textarea name="content" data-provide="markdown" data-iconlibrary="fa" rows="10"></textarea>
+              <textarea name="content" data-provide="markdown" data-iconlibrary="fa" rows="10" value=""></textarea>
             </div>
             <div class="form-group">
               <div class="row">
@@ -893,7 +882,7 @@
                 </div>
                 <div class="col-xs-6">
                   <label class="control-label margin-bottom-15" for="topic_tags">Tags:</label>
-                  <select name="tags" class="form-control" multiple data-plugin="selectpicker">
+                  <select class="form-control" multiple data-plugin="selectpicker">
                     {% for t in group.tags %}
                     <option>{{ t }}</option>
                     {% endfor %}
@@ -901,11 +890,11 @@
                 </div>
               </div>
             </div>
+            <div class="form-group modal-footer text-left">
+              <button class="btn btn-primary" type="submit">Post</button>
+              <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">Cancel</a>
+            </div>
           </form>
-        </div>
-        <div class="modal-footer text-left">
-          <button class="btn btn-primary" data-dismiss="modal" type="submit">Create</button>
-          <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">Cancel</a>
         </div>
       </div>
     </div>
@@ -914,27 +903,111 @@
         
 {% endblock %}
 
+{% block styles %}
+  <!-- Plugins For This Page -->  
+  <link rel="stylesheet" href="/static/assets/vendor/select2/select2.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/bootstrap-tokenfield/bootstrap-tokenfield.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/bootstrap-select/bootstrap-select.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/icheck/icheck.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/switchery/switchery.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/asrange/asRange.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/asspinner/asSpinner.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/clockpicker/clockpicker.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/ascolorpicker/asColorPicker.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/bootstrap-touchspin/bootstrap-touchspin.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/card/card.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/jquery-labelauty/jquery-labelauty.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/jt-timepicker/jquery-timepicker.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/jquery-strength/jquery-strength.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/multi-select/multi-select.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/typeahead-js/typeahead.min.css">
+
+<!--   
+  <link rel="stylesheet" href="/static/assets/vendor/ascolorpicker/asColorPicker.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/select2/select2.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/bootstrap-markdown/bootstrap-markdown.min.css">
+  <link rel="stylesheet" href="/static/assets/vendor/bootstrap-select/bootstrap-select.min.css">
+ -->
+  <!-- Page -->
+  <link rel="stylesheet" href="/static/assets/fonts/font-awesome/font-awesome.css">
+  <link rel="stylesheet" href="/static/assets/examples/css/apps/forum.css">
+  <link rel="stylesheet" href="/static/assets/examples/css/forms/advanced.css">
+{% endblock %}
+
 {% block js %}
+  <!-- Plugins For This Page -->
+
   <script src="/static/assets/vendor/select2/select2.min.js"></script>
+  <script src="/static/assets/vendor/bootstrap-tokenfield/bootstrap-tokenfield.min.js"></script>
+  <script src="/static/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+  <script src="/static/assets/vendor/bootstrap-select/bootstrap-select.min.js"></script>
+  <script src="/static/assets/vendor/icheck/icheck.min.js"></script>
+  <script src="/static/assets/vendor/switchery/switchery.min.js"></script>
+  <script src="/static/assets/vendor/asrange/jquery-asRange.min.js"></script>
+  <script src="/static/assets/vendor/asspinner/jquery-asSpinner.min.js"></script>
+  <script src="/static/assets/vendor/clockpicker/bootstrap-clockpicker.min.js"></script>
+  <script src="/static/assets/vendor/ascolor/jquery-asColor.min.js"></script>
+  <script src="/static/assets/vendor/asgradient/jquery-asGradient.min.js"></script>
+  <script src="/static/assets/vendor/ascolorpicker/jquery-asColorPicker.min.js"></script>
+  <script src="/static/assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+  <script src="/static/assets/vendor/jquery-knob/jquery.knob.min.js"></script>
+  <script src="/static/assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+  <script src="/static/assets/vendor/card/jquery.card.js"></script>
+  <script src="/static/assets/vendor/jquery-labelauty/jquery-labelauty.js"></script>
+  <script src="/static/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+  <script src="/static/assets/vendor/jt-timepicker/jquery.timepicker.min.js"></script>
+  <script src="/static/assets/vendor/datepair-js/datepair.min.js"></script>
+  <script src="/static/assets/vendor/datepair-js/jquery.datepair.min.js"></script>
+  <script src="/static/assets/vendor/jquery-strength/jquery-strength.min.js"></script>
+  <script src="/static/assets/vendor/multi-select/jquery.multi-select.js"></script>
+  <script src="/static/assets/vendor/typeahead-js/bloodhound.min.js"></script>
+  <script src="/static/assets/vendor/typeahead-js/typeahead.jquery.min.js"></script>
+  <script src="/static/assets/vendor/jquery-placeholder/jquery.placeholder.min.js"></script>
+
+<!-- 
+  <script src="/static/assets/vendor/ascolorpicker/jquery-asColorPicker.min.js"></script>
+  <script src="/static/assets/vendor/select2/select2.min.js"></script>
+ -->
   <script src="/static/assets/vendor/bootstrap-markdown/bootstrap-markdown.js"></script>
   <script src="/static/assets/vendor/bootstrap-select/bootstrap-select.min.js"></script>
   <script src="/static/assets/vendor/marked/marked.min.js"></script>
   <script src="/static/assets/vendor/to-markdown/to-markdown.js"></script>
-
 {% endblock %}
 
 {% block xjs %}
-  <script src="/static/assets/js/app.min.js"></script>
+  <!-- Scripts For This Page -->
+  <script src="/static/assets/js/components/select2.min.js"></script>
+  <script src="/static/assets/js/components/bootstrap-tokenfield.min.js"></script>
+  <script src="/static/assets/js/components/bootstrap-tagsinput.min.js"></script>
+  <script src="/static/assets/js/components/bootstrap-select.min.js"></script>
+  <script src="/static/assets/js/components/icheck.min.js"></script>
+  <script src="/static/assets/js/components/switchery.min.js"></script>
+  <script src="/static/assets/js/components/asrange.min.js"></script>
+  <script src="/static/assets/js/components/asspinner.min.js"></script>
+  <script src="/static/assets/js/components/clockpicker.min.js"></script>
+  <script src="/static/assets/js/components/ascolorpicker.min.js"></script>
+  <script src="/static/assets/js/components/bootstrap-maxlength.min.js"></script>
+  <script src="/static/assets/js/components/jquery-knob.min.js"></script>
+  <script src="/static/assets/js/components/bootstrap-touchspin.min.js"></script>
+  <script src="/static/assets/js/components/card.min.js"></script>
+  <script src="/static/assets/js/components/jquery-labelauty.min.js"></script>
+  <script src="/static/assets/js/components/bootstrap-datepicker.min.js"></script>
+  <script src="/static/assets/js/components/jt-timepicker.min.js"></script>
+  <script src="/static/assets/js/components/datepair-js.min.js"></script>
+  <script src="/static/assets/js/components/jquery-strength.min.js"></script>
+  <script src="/static/assets/js/components/multi-select.min.js"></script>
+  <script src="/static/assets/js/components/jquery-placeholder.min.js"></script>
 
+  <!-- 
+  <script src="/static/assets/js/components/ascolorpicker.min.js"></script>
   <script src="/static/assets/js/components/select2.min.js"></script>
   <script src="/static/assets/js/components/bootstrap-select.min.js"></script>
-
+ -->
+  <script src="/static/assets/js/app.min.js"></script>
   <script src="/static/assets/examples/js/apps/forum.js"></script>
   <script src="/static/assets/examples/js/forms/advanced.js"></script>
 
-  <script type="text/javascript">
-    (function() {
-      $(".form-control").select2();
-    })();
-  </script>
 {% endblock %}

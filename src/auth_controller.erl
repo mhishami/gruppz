@@ -80,11 +80,16 @@ handle_request(<<"POST">>, <<"signup">>, _Args, Params, _Req) ->
             <<"password">> => web_util:hash_password(Pass2),
             <<"mobile_no">> => <<>>,
             <<"groups">> => [],
+            <<"posts">> => 0,
+            <<"last_post">> => erlang:localtime(),
             <<"created_at">> => erlang:localtime(),
             <<"updated_at">> => erlang:localtime()
           },
           ?DEBUG("User= ~p~n", [User]),
           mongo_worker:save(?DB_USERS, User),
+
+          %% copy profile pic
+          
           {redirect, <<"/auth/login">>}
       end
   end;

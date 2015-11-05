@@ -63,10 +63,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for t in group.tags %}
+                  {% for t in tags %}
                   <tr>
                     <td>{{ forloop.counter }}</td>
-                    <td>{{ t }}</td>
+                    <td>{{ t.name }}</td>
                     <td>
                       <form method="post" action="/group/tag/{{ group._id }}/del">
                         <input type="hidden" name="tag" value="{{ t }}">
@@ -77,15 +77,27 @@
                   {% endfor %}
                 </tbody>
               </table>
-              <div class="form-group">
-                <form method="post" action="/group/tag/{{ group._id }}/add">
-                  <div class="input-group">
-                    <input type="text" class="form-control" name="tag" placeholder="New Tag...">
-                    <span class="input-group-btn">
-                      <button type="submit" class="btn btn-default btn-primary"> Add </button>
-                    </span>
+              <div class="row">
+                <div class="panel">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Add Tag</h3>
+                    <div class="panel-actions"></div>
                   </div>
-                </form>
+                <div class="panel-body">
+                  <form class="form-vertical" role="form" method="post" action="/group/tag/{{ group._id }}/add">
+                    <div class="form-group">
+                      <input type="text" class="asColorpicker form-control col-md-12" data-plugin="asColorPicker"
+                        data-mode="simple" value="#fa7a7a" />
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control col-md-8" name="tag" placeholder="New Tag...">
+                    </div>
+                    <div class="form-group">
+                      <label></label>
+                      <button type="submit" class="btn btn-primary" style="margin-top: 10px;"> Add </button>
+                    </div>
+                  </form>
+                </div>  <!-- panel-body -->
               </div>
             </div>
           </div>

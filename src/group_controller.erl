@@ -1,4 +1,5 @@
 -module (group_controller).
+
 -include ("gruppz.hrl").
 
 -export ([handle_request/5]).
@@ -105,27 +106,24 @@ handle_request(<<"POST">>, <<"category">>, [GroupId, <<"del">>], Params, _Req) -
 %%
 handle_request(<<"POST">>, <<"tag">>, [GroupId, <<"add">>], Params, _Req) ->
   {ok, PostVals} = maps:find(<<"qs_body">>, Params),
-  {ok, Group} = mongo_worker:find_one(?DB_GROUPS, {<<"_id">>, GroupId}),
-
   Tag = proplists:get_value(<<"tag">>, PostVals),
   case Tag =:= <<>> of
     true ->
       %% redirect back
       {redirect, << <<"/forum/settings/">>/binary, GroupId/binary >>};
     _ ->
-      G2 = Group#{<<"tags">> => lists:merge(maps:get(<<"tags">>, Group), [Tag])},
-      mongo_worker:update(?DB_GROUPS, G2),
+      T = #{<<"_id">> => uuid:gen(),
+              <<"grpid">> => GroupId,
+              <<"name">> => Tag, 
+              <<"color">> => <<"#fff">>},
+      mongo_worker:save(?DB_TAGS, T),
       {redirect, << <<"/forum/settings/">>/binary, GroupId/binary >>}
   end;
 
 handle_request(<<"POST">>, <<"tag">>, [GroupId, <<"del">>], Params, _Req) ->
   {ok, PostVals} = maps:find(<<"qs_body">>, Params),
-  {ok, Group} = mongo_worker:find_one(?DB_GROUPS, {<<"_id">>, GroupId}),
-  ?DEBUG("Group= ~p~n", [Group]),
-
   Tag = proplists:get_value(<<"tag">>, PostVals),
-  G2 = Group#{<<"tags">> => lists:subtract(maps:get(<<"tags">>, Group), [Tag])},
-  mongo_worker:update(?DB_GROUPS, G2),
+  mongo_worker:delete(?DB_TAGS, {<<"grpid">>, GroupId, <<"name">>, Tag}),
   {redirect, << <<"/forum/settings/">>/binary, GroupId/binary >>};
 
 %% ----------------------------------------------------------------------------
