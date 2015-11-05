@@ -49,7 +49,7 @@ handle_request(<<"POST">>, <<"article">>, [], Params, _Req) ->
     }),
   mongo_worker:update(?DB_USERS, User2),
 
-  {redirect, << <<"/group/forum/">>/binary, GroupId/binary >>};
+  {redirect, << <<"/forum/discuss/">>/binary, GroupId/binary >>};
 
 handle_request(<<"GET">>, <<"message">>, [_MsgId], _Params, _Req) ->
   {ok, Content} = forum_message_dtl:render([]),

@@ -1,3 +1,4 @@
+
 <header class="slidePanel-header">
   <div class="slidePanel-actions" aria-label="actions" role="group">
     <button type="button" class="btn btn-pure btn-inverse slidePanel-close actions-top icon wb-close"
@@ -18,9 +19,10 @@
       <span class="name">{{ post.author.fullname }}</span>
       <span class="time">3 minutes ago</span>
     </div>
-    <div class="forum-content">
-      <br>
-      <p>{{ post.content }}</p>
+    <div id="content" class="forum-content">
+      {% autoescape off %}
+      {{ content }}
+      {% endautoescape %}
     </div>
     <div class="forum-metas">
       <div class="button-group tags">
@@ -71,3 +73,5 @@
     <button class="btn btn-primary" data-dismiss="modal" type="button">Reply</button>
   </div>
 </div>
+
+

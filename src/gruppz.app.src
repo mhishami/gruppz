@@ -21,7 +21,8 @@
                   sync,
                   goldrush,
                   pbkdf2,
-                  eunit_formatters
+                  eunit_formatters,
+                  erlmarkdown
   ]},
   {mod, {gruppz_app, []}},
   {env, [
