@@ -29,15 +29,34 @@ handle_request(<<"GET">>, <<"welcome">>, [GroupId], Params, _Req) ->
   ]};
 
 handle_request(<<"GET">>, <<"news">>, [GroupId], Params, _Req) ->
-  %% check if our user has any board subscribed to
   User = form_util:get_user(Params),
-  {ok, News} = mongo_worker:find(?DB_NEWS, {<<"group">>, GroupId, <<"msgid">>, <<"welcome">>}),
+  {ok, Posts} = mongo_worker:find(?DB_POSTS, {<<"grpid">>, GroupId, <<"category">>, <<"News">>}),
   {ok, Group} = mongo_worker:find_one(?DB_GROUPS, {<<"_id">>, GroupId}),
+  {ok, Tags} = mongo_worker:match(?DB_TAGS, {<<"grpid">>, GroupId}, {<<"name">>, 1}),
 
   {render, <<"forum_news">>, [
     {user, User},
-    {news, News},
-    {group, Group}
+    {posts, Posts},
+    {group, Group},
+    {tags, Tags}
+  ]};
+
+handle_request(<<"GET">>, <<"discuss">>, [GroupId], Params, _Req) ->
+  User = form_util:get_user(Params),
+  {ok, Posts} = mongo_worker:find(?DB_POSTS, {
+      <<"grpid">>, GroupId,
+      <<"category">>, {<<"$ne">>, <<"News">>},
+      <<"category">>, {<<"$ne">>, <<"Welcome">>}
+    }),
+
+  {ok, Group} = mongo_worker:find_one(?DB_GROUPS, {<<"_id">>, GroupId}),
+  {ok, Tags} = mongo_worker:match(?DB_TAGS, {<<"grpid">>, GroupId}, {<<"name">>, 1}),
+
+  {render, <<"forum_discuss">>, [
+    {user, User},
+    {posts, Posts},
+    {group, Group},
+    {tags, Tags}
   ]};
 
 handle_request(<<"GET">>, <<"settings">>, [GroupId], Params, _Req) ->

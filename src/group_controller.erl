@@ -36,8 +36,9 @@ handle_request(<<"POST">>, <<"new">>, _Args, Params, _Req) ->
       {render, <<"group_new">>, [{error, Err} | PostVals]};
     _ ->
       %% okay, forms look good
+      GroupId = uuid:gen(),
       Group = #{
-        <<"_id">> => uuid:gen(),
+        <<"_id">> => GroupId,
         <<"name">> => proplists:get_value(<<"name">>, PostVals),
         <<"description">> => proplists:get_value(<<"description">>, PostVals),
         <<"members">> => [maps:get(<<"_id">>, User)],  %% contain the user list
@@ -53,7 +54,7 @@ handle_request(<<"POST">>, <<"new">>, _Args, Params, _Req) ->
       mongo_worker:save(?DB_GROUPS, Group),
 
       UserGroup = #{
-        <<"_id">> => maps:get(<<"_id">>, Group),
+        <<"_id">> => GroupId,
         <<"name">> => maps:get(<<"name">>, Group),
         <<"description">> => maps:get(<<"description">>, Group)
       },
@@ -61,7 +62,7 @@ handle_request(<<"POST">>, <<"new">>, _Args, Params, _Req) ->
         <<"groups">> => lists:merge(maps:get(<<"groups">>, User), [UserGroup]),
         <<"updated_at">> => erlang:timestamp()
       }),
-      {redirect, <<"/app">>}
+      {redirect, << <<"/forum/welcome/">>/binary, GroupId/binary >>}
   end;
 
 %% ----------------------------------------------------------------------------

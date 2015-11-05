@@ -9,7 +9,7 @@
           <table class="table is-indent">
             <tbody>
               {% for p in posts %}
-              <tr data-url="panel.tpl" data-toggle="slidePanel">
+              <tr data-url="/msg/{{ group._id }}/{{ p._id }}" data-toggle="slidePanel">
                 <td class="pre-cell"></td>
                 <td class="cell-60 responsive-hide">
                   <a class="avatar" href="javascript:void(0)">
@@ -22,22 +22,24 @@
                     <div class="title">
                       {{ p.title }}
                       <div class="flags responsive-hide">
-                        <span class="sticky-top label label-round label-danger"><i class="icon wb-dropup" aria-hidden="true"></i>TOP</span>
-                        <i class="locked icon wb-lock" aria-hidden="true"></i>
+                        {% for t in p.tags %}
+                        <span class="label label-round" style="background-color: {{ t.color }}">{{ t.name }}</span>
+                        {% endfor %}
                       </div>
                     </div>
                     <div class="metas">
-                      <span class="author">By {{ p.author }}</span>
-                      <span class="started">{{ p.date | date:"F j, Y" }}</span>
-                      {% for t in p.tags %}
-                      <span class="tags">{{ t }}</span>
-                      {% endfor %}
+                      <span class="author">By {{ p.author.fullname }}</span>
+                      <span class="started">{{ p.created_at | format:"F j, Y" }}</span>
                     </div>
                   </div>
                 </td>
                 <td class="cell-80 forum-posts">
-                  <span class="num">1</span>
+                  <span class="num">{{ p.author.posts }}</span>
+                  {% if p.author.posts > 1 %}
+                  <span class="unit">Posts</span>
+                  {% else %}
                   <span class="unit">Post</span>
+                  {% endif %}
                 </td>
                 <td class="suf-cell"></td>
               </tr>
@@ -50,7 +52,7 @@
             <div class="col-md-12">
               <div class="panel">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Discussion Message</h3>
+                  <h3 class="panel-title">Discussion</h3>
                   <div class="panel-actions"></div>
                 </div>
                 <div class="panel-body">
@@ -61,7 +63,7 @@
                     <h4>Opps!</h4>
                     <p>
                       No message is being created yet!<br>
-                      Create one by posting a new message.
+                      Create one by posting a new message, and choose the News category.
                     </p>
                   </div>
                 </div>

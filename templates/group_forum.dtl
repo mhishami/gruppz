@@ -21,7 +21,7 @@
               <i class="icon wb-bell" aria-hidden="true"></i>
               <span class="list-group-item-content">News</span>
             </a>
-            <a class="list-group-item" href="/group/forum/{{ group._id }}">
+            <a class="list-group-item" href="/forum/discuss/{{ group._id }}">
               <i class="icon wb-clipboard" aria-hidden="true"></i>
               <span class="list-group-item-content">Discussions</span>
             </a>
