@@ -9,7 +9,7 @@
           <table class="table is-indent">
             <tbody>
               {% for p in posts %}
-              <tr data-url="/msg/{{ p._id }}" data-toggle="slidePanel">
+              <tr data-url="/msg/{{ group._id }}/{{ p._id }}" data-toggle="slidePanel">
                 <td class="pre-cell"></td>
                 <td class="cell-60 responsive-hide">
                   <a class="avatar" href="javascript:void(0)">
