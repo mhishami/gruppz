@@ -15,7 +15,7 @@ before_filter(SessionId) ->
       {ok, proceed}
   end.
 
-handle_request(<<"POST">>, <<"article">>, _Args, Params, _Req) ->
+handle_request(<<"POST">>, <<"article">>, [], Params, _Req) ->
   %% check if our user has any board subscribed to
   User = form_util:get_user(Params),
 
@@ -24,6 +24,16 @@ handle_request(<<"POST">>, <<"article">>, _Args, Params, _Req) ->
   Content = proplists:get_value(<<"content">>, PostVals),
   Category = proplists:get_value(<<"category">>, PostVals),
   Tags = proplists:get_all_values(<<"tag">>, PostVals),
+  GroupId = proplists:get_value(<<"grpid">>, PostVals),
+
+  CurrPost = maps:get(<<"posts">>, User),
+  User2 = User#{<<"posts">> => CurrPost + 1, 
+                <<"last_post">> => erlang:timestamp()},
+
+  TagList = lists:map(fun(Id) -> 
+                        {ok, T} = mongo_worker:find_one(?DB_TAGS, {<<"_id">>, Id}), 
+                        T 
+                      end, Tags),
 
   %% save the post    
   mongo_worker:save(?DB_POSTS, #{
@@ -31,12 +41,19 @@ handle_request(<<"POST">>, <<"article">>, _Args, Params, _Req) ->
       <<"title">> => Title,
       <<"content">> => Content,
       <<"category">> => Category,
-      <<"tags">> => Tags,
-      <<"author">> => User,
-      <<"created_at">> => erlang:localtime(),
-      <<"updated_at">> => erlang:localtime()
+      <<"tags">> => TagList,
+      <<"author">> => User2,
+      <<"grpid">> => GroupId,
+      <<"created_at">> => erlang:timestamp(),
+      <<"updated_at">> => erlang:timestamp()
     }),
-  {redirect, <<"/app/forum">>};
+  mongo_worker:update(?DB_USERS, User2),
+
+  {redirect, << <<"/group/forum/">>/binary, GroupId/binary >>};
+
+handle_request(<<"GET">>, <<"message">>, [_MsgId], _Params, _Req) ->
+  {ok, Content} = forum_message_dtl:render([]),
+  {render, Content};
 
 %% ----------------------------------------------------------------------------
 %% catch all

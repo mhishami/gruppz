@@ -45,8 +45,8 @@ handle_request(<<"POST">>, <<"new">>, _Args, Params, _Req) ->
         <<"admin">> => [maps:get(<<"_id">>, User)],
         <<"categories">> => [<<"General">>],
         <<"tags">> => [<<"#cool">>],
-        <<"created_at">> => erlang:localtime(),
-        <<"updated_at">> => erlang:localtime()
+        <<"created_at">> => erlang:timestamp(),
+        <<"updated_at">> => erlang:timestamp()
       },
       %% ok, save the data
       ?DEBUG("Group= ~p~n", [Group]),
@@ -59,7 +59,7 @@ handle_request(<<"POST">>, <<"new">>, _Args, Params, _Req) ->
       },
       mongo_worker:update(?DB_USERS, User#{ 
         <<"groups">> => lists:merge(maps:get(<<"groups">>, User), [UserGroup]),
-        <<"updated_at">> => erlang:localtime()
+        <<"updated_at">> => erlang:timestamp()
       }),
       {redirect, <<"/app">>}
   end;
@@ -69,9 +69,12 @@ handle_request(<<"POST">>, <<"new">>, _Args, Params, _Req) ->
 %%
 handle_request(<<"GET">>, <<"forum">>, [GroupId], Params, _Req) ->
   {ok, Group} = mongo_worker:find_one(?DB_GROUPS, {<<"_id">>, GroupId}),
+  {ok, Tags} = mongo_worker:match(?DB_TAGS, {<<"grpid">>, GroupId}, {<<"name">>, 1}),
+
   {render, <<"forum_discuss">>, [
     {user, form_util:get_user(Params)},
-    {group, Group}
+    {group, Group},
+    {tags, Tags}
   ]};
 
 %% ----------------------------------------------------------------------------
@@ -107,6 +110,7 @@ handle_request(<<"POST">>, <<"category">>, [GroupId, <<"del">>], Params, _Req) -
 handle_request(<<"POST">>, <<"tag">>, [GroupId, <<"add">>], Params, _Req) ->
   {ok, PostVals} = maps:find(<<"qs_body">>, Params),
   Tag = proplists:get_value(<<"tag">>, PostVals),
+  Color = proplists:get_value(<<"color">>, PostVals),
   case Tag =:= <<>> of
     true ->
       %% redirect back
@@ -115,7 +119,9 @@ handle_request(<<"POST">>, <<"tag">>, [GroupId, <<"add">>], Params, _Req) ->
       T = #{<<"_id">> => uuid:gen(),
               <<"grpid">> => GroupId,
               <<"name">> => Tag, 
-              <<"color">> => <<"#fff">>},
+              <<"color">> => Color,
+              <<"created_at">> => erlang:timestamp(),
+              <<"updated_at">> => erlang:timestamp()},
       mongo_worker:save(?DB_TAGS, T),
       {redirect, << <<"/forum/settings/">>/binary, GroupId/binary >>}
   end;

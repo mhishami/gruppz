@@ -1,6 +1,8 @@
 -module (auth_controller).
 -export ([handle_request/5]).
 % -export ([before_filter/1]).
+-export ([gen_portraits/2]).
+-export ([regen_portraits/0]).
 
 -include ("gruppz.hrl").
 
@@ -81,15 +83,17 @@ handle_request(<<"POST">>, <<"signup">>, _Args, Params, _Req) ->
             <<"mobile_no">> => <<>>,
             <<"groups">> => [],
             <<"posts">> => 0,
-            <<"last_post">> => erlang:localtime(),
-            <<"created_at">> => erlang:localtime(),
-            <<"updated_at">> => erlang:localtime()
+            <<"gender">> => proplists:get_value(<<"gender">>, PostVals),
+            <<"last_post">> => erlang:timestamp(),
+            <<"created_at">> => erlang:timestamp(),
+            <<"updated_at">> => erlang:timestamp()
           },
           ?DEBUG("User= ~p~n", [User]),
           mongo_worker:save(?DB_USERS, User),
 
           %% copy profile pic
-          
+          gen_portraits(maps:get(<<"_id">>, User), maps:get(<<"gender">>, User)),
+
           {redirect, <<"/auth/login">>}
       end
   end;
@@ -114,3 +118,31 @@ handle_request(<<"GET">>, <<"logout">>, _Args, Params, _Req) ->
 %%
 handle_request(Method, Action, Args, _, _) ->
   {error, [{method, Method}, {action, Action}, {args, Args}]}.
+
+-spec gen_portraits(binary(), binary()) -> any().
+gen_portraits(User, Gender) when is_binary(User); is_binary(Gender) ->
+  PixDir = "/static/assets/portraits/",
+  PrivDir = code:priv_dir(gruppz),
+  UserId = erlang:binary_to_list(User),
+
+  case Gender of
+    <<"male">> ->
+      %% copy male picture as id
+      Cmd = "cp " ++ PrivDir ++ PixDir ++ "generic-male.jpg " ++ 
+            PrivDir ++ PixDir ++ UserId ++ ".jpg",
+      os:cmd(Cmd);
+    <<"female">> ->
+      Cmd = "cp " ++ PrivDir ++ PixDir ++ "generic-female.jpg " ++ 
+            PrivDir ++ PixDir ++ UserId ++ ".jpg",
+      os:cmd(Cmd)
+  end.          
+
+-spec regen_portraits() -> any().
+regen_portraits() ->
+  {ok, Users} = mongo_worker:find(?DB_USERS, {}),
+  lists:map(fun(U) ->
+              Id = maps:get(<<"_id">>, U),
+              Gender = maps:get(<<"gender">>, U),
+              gen_portraits(Id, Gender)
+            end, Users).
+

@@ -54,6 +54,7 @@
               <h3 class="panel-title">Tags</h3>
             </div>
             <div class="panel-body">
+              {% if tags %}
               <table class="table table-hover text-middle">
                 <thead>
                   <tr>
@@ -66,10 +67,12 @@
                   {% for t in tags %}
                   <tr>
                     <td>{{ forloop.counter }}</td>
-                    <td>{{ t.name }}</td>
+                    <td>
+                      <span class="label label-round" style="background-color: {{ t.color }}">{{ t.name }}</span>
+                    </td>
                     <td>
                       <form method="post" action="/group/tag/{{ group._id }}/del">
-                        <input type="hidden" name="tag" value="{{ t }}">
+                        <input type="hidden" name="tag" value="{{ t.name }}">
                         <button type="submit" class="btn btn-pure btn-default icon fa-trash"></button>
                       </form>
                     </td>
@@ -77,6 +80,7 @@
                   {% endfor %}
                 </tbody>
               </table>
+              {% endif %}
               <div class="row">
                 <div class="panel">
                   <div class="panel-heading">
@@ -86,11 +90,10 @@
                 <div class="panel-body">
                   <form class="form-vertical" role="form" method="post" action="/group/tag/{{ group._id }}/add">
                     <div class="form-group">
-                      <input type="text" class="asColorpicker form-control col-md-12" data-plugin="asColorPicker"
-                        data-mode="simple" value="#fa7a7a" />
+                      <input type="text" name="color" class="asColorpicker form-control col-md-12" data-plugin="asColorPicker" data-mode="simple" value="#fa7a7a" />
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control col-md-8" name="tag" placeholder="New Tag...">
+                      <input type="text" name="tag" class="form-control col-md-8" placeholder="New Tag...">
                     </div>
                     <div class="form-group">
                       <label></label>
@@ -106,3 +109,5 @@
     </div>
 
 {% endblock %}
+
+

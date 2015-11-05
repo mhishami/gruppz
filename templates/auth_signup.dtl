@@ -1,5 +1,10 @@
 {% extends "auth_login.dtl" %}          
 
+  {% block styles %}
+  <link rel="stylesheet" href="/static/assets/examples/css/pages/login-v3.css">
+  <link rel="stylesheet" href="/static/assets/vendor/bootstrap-select/bootstrap-select.min.css">
+  {% endblock %}
+
           {% block content %}
 
           {% if error %}
@@ -21,6 +26,15 @@
               <label class="floating-label">Email</label>
             </div>
             <div class="form-group form-material floating">
+              <label class="pull-left">Gender</label>
+              <select class="form-control" name="gender" 
+                data-plugin="selectpicker" 
+                data-placeholder="Select gender...">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <div class="form-group form-material floating">
               <input type="password" class="form-control" name="password" />
               <label class="floating-label">Password</label>
             </div>
@@ -33,3 +47,9 @@
           </form>
           <p>Have account already? Please go to <a href="/auth/login">Sign In</a></p>
           {% endblock %}
+
+
+  {% block js %}
+  <script src="/static/assets/vendor/bootstrap-select/bootstrap-select.min.js"></script>
+  <script src="/static/assets/js/components/bootstrap-select.min.js"></script>
+  {% endblock %}

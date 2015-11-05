@@ -26,9 +26,12 @@ handle_request(<<"GET">>, <<"index">>, _Args, Params, _Req) ->
 
 handle_request(<<"GET">>, <<"forum">>, [], Params, _Req) ->
   {ok, Group} = mongo_worker:find_one(?DB_GROUPS, {}),
+  % {ok, Tags} = mongo_worker:match(?DB_TAGS, {<<"grpid">>, GroupId}, {<<"name">>, 1}),
+
   {render, <<"group_forum">>, [
     {user, form_util:get_user(Params)},
     {group, Group}
+    % {tags, Tags}
   ]};
 
 %% ----------------------------------------------------------------------------

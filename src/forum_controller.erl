@@ -17,13 +17,15 @@ before_filter(SessionId) ->
 handle_request(<<"GET">>, <<"welcome">>, [GroupId], Params, _Req) ->
   %% check if our user has any board subscribed to
   User = form_util:get_user(Params),
-  {ok, Post} = mongo_worker:find(?DB_POSTS, {<<"group">>, GroupId, <<"msgid">>, <<"welcome">>}),
+  {ok, Posts} = mongo_worker:find(?DB_POSTS, {<<"grpid">>, GroupId, <<"category">>, <<"Welcome">>}),
   {ok, Group} = mongo_worker:find_one(?DB_GROUPS, {<<"_id">>, GroupId}),
+  {ok, Tags} = mongo_worker:match(?DB_TAGS, {<<"grpid">>, GroupId}, {<<"name">>, 1}),
 
   {render, <<"forum_welcome">>, [
     {user, User},
-    {post, Post},
-    {group, Group}
+    {posts, Posts},
+    {group, Group},
+    {tags, Tags}
   ]};
 
 handle_request(<<"GET">>, <<"news">>, [GroupId], Params, _Req) ->
@@ -44,6 +46,7 @@ handle_request(<<"GET">>, <<"settings">>, [GroupId], Params, _Req) ->
   {ok, Group} = mongo_worker:find_one(?DB_GROUPS, {<<"_id">>, GroupId}),
   {ok, Tags} = mongo_worker:match(?DB_TAGS, {<<"grpid">>, GroupId}, {<<"name">>, 1}),
 
+  ?DEBUG("Group= ~p, Tags= ~p~n", [Group, Tags]),
   {render, <<"forum_settings">>, [
     {user, User},
     {group, Group},

@@ -46,7 +46,7 @@ handle_request(<<"POST">>, <<"profile">>, [<<"update">>], Params, _Req) ->
       mongo_worker:update(?DB_USERS, User#{
         <<"fullname">> := Fullname,
         <<"mobile_no">> := MobileNo,
-        <<"updated_at">> := erlang:localtime()
+        <<"updated_at">> := erlang:timestamp()
       }),
       {redirect, <<"/app">>}
   end;
@@ -79,7 +79,7 @@ handle_request(<<"POST">>, <<"passwd">>, [<<"update">>], Params, _Req) ->
           ?DEBUG("User= ~p~n", [User]),
           mongo_worker:update(?DB_USERS, User#{
             <<"password">> => web_util:hash_password(Pass2),
-            <<"updated_at">> => erlang:localtime()
+            <<"updated_at">> => erlang:timestamp()
           }),
 
           %% invalidate, and ask to login again
